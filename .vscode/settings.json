@@ -1,0 +1,18 @@
+{
+  "editor.tabSize": 2,
+  "editorconfig.generateAuto": false,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "python.formatting.provider": "black",
+  "python.linting.banditEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pycodestyleEnabled": true,
+  "python.linting.pydocstyleEnabled": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "search.exclude": {
+    "poetry.lock": true
+  }
+}

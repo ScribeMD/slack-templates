@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "davidanson.vscode-markdownlint",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "graphql.vscode-graphql",
+    "ms-azuretools.vscode-docker",
+    "ms-python.python",
+    "ms-vscode-remote.remote-containers",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

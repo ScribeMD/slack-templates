@@ -1,0 +1,12 @@
+# Mega-Linter
+report/
+
+# mypy
+.mypy_cache
+
+# npm
+node_modules
+package-lock.json
+
+# Python
+__pycache__

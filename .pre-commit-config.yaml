@@ -1,0 +1,131 @@
+default_language_version:
+  python: python3.9
+default_stages:
+  - commit
+minimum_pre_commit_version: 2.15.0
+repos:
+  # Automatically fix issues.
+
+  ## Polyglot
+  - repo: local
+    hooks:
+      - id: no-merge-commit
+        name: Don't create merge commits
+        entry: Prefer rebase workflow to merge commits
+        language: fail
+        stages:
+          - merge-commit
+      - id: check-poetry
+        name: Check Poetry considers pyproject.toml valid
+        entry: poetry check
+        language: system
+        pass_filenames: false
+      - id: check-poetry-lock
+        name: Check Poetry lock file matches pyproject.toml
+        entry: poetry lock --check
+        language: system
+        pass_filenames: false
+      - id: mega-linter
+        name: Mega-Linter
+        entry: >
+          --user root
+          --env DEFAULT_WORKSPACE=/src
+          --env LOG_LEVEL=warning
+          nvuillam/mega-linter-python:v4.46.0
+        language: docker_image
+        pass_filenames: false
+        description: Run Mega-Linter on changed files.
+        args: [--fix]
+
+  ## Python
+  - repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.5.7
+    hooks:
+      - id: autopep8
+  - repo: https://github.com/myint/docformatter
+    rev: v1.4
+    hooks:
+      - id: docformatter
+        args: [--wrap-summaries, "88", --wrap-descriptions, "88"]
+
+  ## Markdown
+  - repo: https://github.com/frnmst/md-toc
+    rev: 8.0.1
+    hooks:
+      - id: md-toc
+
+  ## Python, TOML, Polyglot, Git
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      ### Automatically fix issues.
+      - id: end-of-file-fixer
+      - id: file-contents-sorter
+        files: \.dictionary\.txt
+        args: [--ignore-case, --unique]
+      - id: fix-byte-order-marker
+      - id: fix-encoding-pragma
+        args: [--remove]
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+      ### Check for issues.
+      - id: check-added-large-files
+        args: [--enforce-all]
+      - id: check-ast
+      - id: check-builtin-literals
+        args: [--no-allow-dict-kwargs]
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: debug-statements
+      - id: destroyed-symlinks
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: detect-private-key
+      - id: forbid-new-submodules
+      - id: name-tests-test
+      - id: no-commit-to-branch
+        stages:
+          - commit
+          - push
+
+  # Check for issues.
+
+  ## Python
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.1.1
+    hooks:
+      - id: pydocstyle
+        additional_dependencies:
+          - toml==0.10.2
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.2.2
+    hooks:
+      - id: python-safety-dependencies-check
+
+  ## YAML
+  - repo: https://github.com/sirosen/check-jsonschema
+    rev: 0.4.1
+    hooks:
+      - id: check-github-actions
+      - id: check-github-workflows
+
+  ## Natural language
+  - repo: https://github.com/PrincetonUniversity/blocklint
+    rev: v0.2.3
+    hooks:
+      - id: blocklint
+
+  ## Git
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v2.19.0
+    hooks:
+      - id: commitizen
+        stages:
+          - commit-msg

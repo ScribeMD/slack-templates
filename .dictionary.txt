@@ -1,0 +1,14 @@
+autopep
+blocklint
+commitizen
+docformatter
+dockerd
+getenv
+Laven
+nosec
+nvuillam
+pyproject
+requestee
+sbin
+shas
+slackapi

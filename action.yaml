@@ -1,0 +1,62 @@
+name: Slack Templates
+author: Kurt von Laven
+description: Send Informative, Concise Slack Notifications With Minimal Effort
+inputs:
+  bot-token:
+    description: >
+      Slack bot token for your custom Slack app with chat:write scope.
+    required: true
+  channel-id:
+    description: >
+      ID of Slack channel to send notifications to. Your bot should be a member.
+    required: true
+  template:
+    description: >
+      The type of Slack notification to send: "assignee," "custom," "reviewers,"
+      or "result." Defaults to "custom." Must pass message if using "custom."
+    required: false
+    default: custom
+  results:
+    description: >
+      The job results to report via Slack when using the "result" template.
+      Defaults to the status of the current job. To report the result of an
+      entire workflow, use this action from a final notify job that depends on
+      (a.k.a., "needs") all other jobs. Then, pass join(needs.*.result, ' ').
+      The highest ranking result will be reported: 1. failure, 2. cancelled,
+      3. success, 4. skipped. Alternatively, a custom result may be passed
+      provided that it is quoted for use as a Bash command line argument.
+    required: false
+    default: ${{ job.status }}
+  message:
+    description: A custom Slack message to send. Do not also pass template.
+    required: false
+    default: Pass message or template to slack-templates.
+branding:
+  icon: hash
+  color: gray-dark
+runs:
+  using: composite
+  steps:
+    - name: Set up Python.
+      uses: actions/setup-python@v2.2.2
+      with:
+        python-version: 3.9
+    - name: Configure Slack notification.
+      run: >
+        python set_slack_message.py
+        "${{ inputs.template }}"
+        "${{ inputs.results }}"
+        "${{ inputs.message }}"
+        "${{ github.token }}"
+        "${{ github.event.pull_request.user.login }}"
+        "*${{ join(github.event.pull_request.requested_reviewers.*.login, '*, *') }}*"
+        "${{ github.event.pull_request.assignee.login }}"
+      shell: bash
+      working-directory: "${{ github.action_path }}"
+    - name: Send Slack notification.
+      uses: slackapi/slack-github-action@v1.15.0
+      with:
+        channel-id: ${{ inputs.channel-id }}
+        slack-message: ${{ env.SLACK_MESSAGE }}
+      env:
+        SLACK_BOT_TOKEN: ${{ inputs.bot-token }}
