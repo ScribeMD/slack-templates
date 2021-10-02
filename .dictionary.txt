@@ -2,7 +2,6 @@ autopep
 blocklint
 commitizen
 docformatter
-dockerd
 getenv
 Laven
 nosec
