@@ -19,23 +19,8 @@ jobs:
           python-version: 3.9
       - name: Install Poetry.
         run: pip install poetry==1.2.0a2
-      - name: Install rootless Docker.
-        run: >
-          curl
-          --fail
-          --silent
-          --show-error
-          --location https://get.docker.com/rootless |
-          sh
-        env:
-          FORCE_ROOTLESS_INSTALL: "1"
-      - name: Use rootless Docker.
-        run: docker context use rootless
-      - name: Start rootless Docker daemon.
-        run: |
-          PATH="/home/runner/bin:/sbin:/usr/sbin:$PATH" dockerd-rootless.sh &
-        env:
-          XDG_RUNTIME_DIR: /home/runner/.docker/run
+      - name: Use Docker in rootless mode.
+        uses: ScribeMD/rootless-docker@0.1.0
       - name: Run pre-commit hooks.
         uses: pre-commit/action@v2.0.3
         env:
