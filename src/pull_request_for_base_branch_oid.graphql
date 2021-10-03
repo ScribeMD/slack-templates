@@ -1,21 +1,21 @@
 query PullRequestForBaseBranchOid(
-    $owner: String!,
-    $repo: String!,
-    $oid: GitObjectID!
+  $owner: String!
+  $repo: String!
+  $oid: GitObjectID!
 ) {
-    repository(owner: $owner, name: $repo) {
-        object(oid: $oid) {
-            ... on Commit {
-                associatedPullRequests(first: 1) {
-                    nodes {
-                        mergeCommit {
-                            oid
-                        }
-                        number
-                    }
-                    totalCount
-                }
+  repository(owner: $owner, name: $repo) {
+    object(oid: $oid) {
+      ... on Commit {
+        associatedPullRequests(first: 1) {
+          nodes {
+            mergeCommit {
+              oid
             }
+            number
+          }
+          totalCount
         }
+      }
     }
+  }
 }
