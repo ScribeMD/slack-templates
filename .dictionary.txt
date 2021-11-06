@@ -1,13 +1,4 @@
-autopep
-blocklint
-commitizen
-docformatter
-getenv
+COPYPASTE
 Laven
-nosec
-nvuillam
-pyproject
 requestee
-sbin
-shas
 slackapi
