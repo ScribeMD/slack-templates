@@ -12,12 +12,31 @@
 ## Setup
 
 - [Install Docker](https://docs.docker.com/get-docker/).
-- Install the version of Python specified as the `default_language_version` in
-  [.pre-commit-config.yaml](.pre-commit-config.yaml) and
-  the `[tool.poetry.dependencies]` section of [pyproject.toml](pyproject.toml).
-- [Install Poetry](https://python-poetry.org/docs/) by running
-  `pip install poetry>=1.1.11`.
+- [Install asdf](https://asdf-vm.com/guide/getting-started.html) to
+  automatically manage the versions of the needed programming languages and
+  tools based on the contents of [.tool-versions](.tool-versions).
+- Add the following to the bottom of your `~/.bashrc`:
+
+  ```bash
+  source ~/.asdf/asdf.sh
+  source ~/.asdf/completions/asdf.bash
+  ```
+
+- Close and relaunch Ubuntu to source your `~/.bashrc`.
+- [Install Python's build dependencies](https://github.com/pyenv/pyenv/wiki#suggested-build-environment).
+- Run `asdf plugin add python` to install the Python plugin for asdf.
+- Run `asdf plugin add poetry` to install the Poetry plugin for asdf.
 - Change directories to the root of this repository.
+- Run `asdf install` to install all asdf-managed tools.
+- Add the following to the bottom of your `~/.bashrc`:
+
+  ```bash
+  for version in ~/.asdf/installs/poetry/*; do
+    source "$version/env"
+  done
+  ```
+
+- Close and relaunch Ubuntu to source your `~/.bashrc`.
 - Run `poetry install` to install all Python dependencies.
 - Run `poetry shell` to activate the Poetry virtual environment.
 - Install all pre-commit hooks by running:
