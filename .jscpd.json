@@ -3,7 +3,7 @@
   "maxSize": 0,
   "threshold": 0,
   "reporters": ["consoleFull", "console"],
-  "ignore": [".git", ".mypy_cache"],
+  "ignore": [".git", ".mypy_cache", ".venv"],
   "gitignore": true,
   "blame": true,
   "ignoreCase": true
