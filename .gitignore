@@ -8,5 +8,8 @@ report/
 node_modules
 package-lock.json
 
+# Poetry
+.venv
+
 # Python
 __pycache__
