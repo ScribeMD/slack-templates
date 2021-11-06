@@ -40,7 +40,7 @@ runs:
     - name: Set up Python.
       uses: actions/setup-python@v2.2.2
       with:
-        python-version: 3.9
+        python-version: 3.9.7
     - name: Configure Slack notification.
       run: >
         python set_slack_message.py
