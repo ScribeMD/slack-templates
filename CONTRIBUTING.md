@@ -16,7 +16,7 @@
   [.pre-commit-config.yaml](.pre-commit-config.yaml) and
   the `[tool.poetry.dependencies]` section of [pyproject.toml](pyproject.toml).
 - [Install Poetry](https://python-poetry.org/docs/) by running
-  `pip install poetry>=1.2.0a2`.
+  `pip install poetry>=1.1.11`.
 - Change directories to the root of this repository.
 - Run `poetry install` to install all Python dependencies.
 - Run `poetry shell` to activate the Poetry virtual environment.
