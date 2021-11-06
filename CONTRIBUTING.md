@@ -20,8 +20,15 @@
 - Change directories to the root of this repository.
 - Run `poetry install` to install all Python dependencies.
 - Run `poetry shell` to activate the Poetry virtual environment.
-- Run `pre-commit install --hook-type commit-msg --hook-type pre-commit --hook-type pre-push`
-  to install all pre-commit hooks.
+- Install all pre-commit hooks by running:
+
+  ```sh
+  pre-commit install \
+    --hook-type commit-msg \
+    --hook-type pre-commit \
+    --hook-type pre-merge-commit \
+    --hook-type pre-push
+  ```
 
 ## Expectations
 
