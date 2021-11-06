@@ -49,7 +49,7 @@ are all currently supported templates:
   - `pull_request` event: \<workflow> **\<result>** for \<PR #> from
     \<branch> on \<repository> by \<username>.
   - `push` event:
-    - merge of pull request: \<workflow> **\<result>** for merge of \<PR #> from
+    - merge of pull request: \<workflow> **\<result>** for merge of \<PR #> to
       \<branch> on \<repository> by \<username>.
     - direct push of branch: \<workflow> **\<result>** for push of \<sha> to
       \<branch> on \<repository> by \<username>.

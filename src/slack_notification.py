@@ -180,7 +180,7 @@ class SlackNotification(ABC):
             return f"push of <{event_url}|{self._sha}> to"
 
         event_url = f"{self._repository_url}/pull/{pull_request_number}"
-        return f"merge of <{event_url}|#{pull_request_number}> from"
+        return f"merge of <{event_url}|#{pull_request_number}> to"
 
     def _get_associated_pull_request_number(self) -> Optional[int]:
         """Return the number of the merged pull request for the pushed commit.
