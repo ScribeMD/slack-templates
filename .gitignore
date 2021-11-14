@@ -4,10 +4,6 @@ report/
 # mypy
 .mypy_cache
 
-# npm
-node_modules
-package-lock.json
-
 # Poetry
 .venv
 
