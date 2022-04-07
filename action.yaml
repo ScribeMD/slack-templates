@@ -38,7 +38,7 @@ runs:
   using: composite
   steps:
     - name: Set up Python.
-      uses: actions/setup-python@v2.2.2
+      uses: actions/setup-python@v3.1.1
       with:
         # Keep in sync with .tool-versions.
         python-version: 3.9.7
@@ -55,7 +55,7 @@ runs:
       shell: bash
       working-directory: "${{ github.action_path }}"
     - name: Send Slack notification.
-      uses: slackapi/slack-github-action@v1.15.0
+      uses: slackapi/slack-github-action@v1.18.0
       with:
         channel-id: ${{ inputs.channel-id }}
         slack-message: ${{ env.SLACK_MESSAGE }}
