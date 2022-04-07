@@ -99,7 +99,7 @@ repos:
 
   ## Python
   - repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.5.7
+    rev: v1.6.0
     hooks:
       - id: autopep8
   - repo: https://github.com/myint/docformatter
@@ -110,13 +110,13 @@ repos:
 
   ## Markdown
   - repo: https://github.com/frnmst/md-toc
-    rev: 8.0.1
+    rev: 8.1.2
     hooks:
       - id: md-toc
 
   ## Python, TOML, Polyglot, Git
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v4.2.0
     hooks:
       ### Automatically fix issues.
       - id: end-of-file-fixer
@@ -162,7 +162,7 @@ repos:
         additional_dependencies:
           - toml==0.10.2
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.2.2
+    rev: v1.2.4
     hooks:
       - id: python-safety-dependencies-check
 
@@ -180,7 +180,7 @@ repos:
         stages:
           - commit-msg
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 2.1.5
+    rev: 2.1.6
     hooks:
       - id: check-mailmap
       - id: forbid-binary
