@@ -27,21 +27,23 @@ def get_slack_notification(arguments: Sequence[str]) -> SlackNotification:
         pr_number_str,
     ) = arguments
 
-    if template == "result":
-        try:
-            pr_number = int(pr_number_str)
-        except ValueError:
-            # GitHub only sends the pull request number for pull_request events.
-            pr_number = None
-        return WorkflowResult(token, results.split(), pr_number)
-    if template == "reviewers":
-        return ReviewersAssignment(token, reviewers, author, int(pr_number_str))
-    if template == "assignee":
-        return PullRequestAssignment(token, assignee, author, int(pr_number_str))
-    if template == "custom":
-        return CustomNotification(token, message)
-    return CustomNotification(
-        token,
-        "Unrecognized template passed to slack-templates: template. Valid options are "
-        '"result," "reviewers," "assignee," or "custom."',
-    )
+    match template:
+        case "result":
+            try:
+                pr_number = int(pr_number_str)
+            except ValueError:
+                # GitHub only sends the pull request number for pull_request events.
+                pr_number = None
+            return WorkflowResult(token, results.split(), pr_number)
+        case "reviewers":
+            return ReviewersAssignment(token, reviewers, author, int(pr_number_str))
+        case "assignee":
+            return PullRequestAssignment(token, assignee, author, int(pr_number_str))
+        case "custom":
+            return CustomNotification(token, message)
+        case _:
+            return CustomNotification(
+                token,
+                "Unrecognized template passed to slack-templates: template. Valid "
+                'options are "result," "reviewers," "assignee," or "custom."',
+            )

@@ -9,5 +9,5 @@ import sys
 
 from src.cli import get_slack_notification
 
-slack_notification = get_slack_notification(sys.argv[1:])
-slack_notification.set_slack_message()
+SLACK_NOTIFICATION = get_slack_notification(sys.argv[1:])
+SLACK_NOTIFICATION.set_slack_message()

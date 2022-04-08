@@ -7,37 +7,12 @@ from os import environ
 from os.path import dirname, join
 from re import fullmatch
 from sys import stderr
-from typing import Any, Optional, Union, cast
+from typing import Any, Optional, cast
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
-JsonValue = Union[None, bool, int, float, str, Sequence[Any], Mapping[str, Any]]
+JsonValue = None | bool | int | float | str | Sequence[Any] | Mapping[str, Any]
 JsonObject = Mapping[str, JsonValue]
-
-
-def _get_json_value(obj: JsonObject, path: Sequence[str]) -> JsonValue:
-    """Return the value at the given path in the given JSON object.
-
-    Return the object itself if the path is empty. Raise TypeError if the object is not
-    valid JSON, but only check along the specified path for performance.
-    """
-    if not path:
-        return obj
-
-    for i, key in enumerate(path[:-1]):
-        value = obj.get(key)
-        if not isinstance(value, dict):
-            current_path = ".".join(path[: i + 1])
-            raise TypeError(
-                f"Expected JSON object to have an object at {current_path}; got:\n"
-                f"{obj}"
-            )
-        obj = cast(JsonObject, value)
-    value = obj.get(path[-1])
-
-    if not isinstance(value, (type(None), bool, int, float, str, list, dict)):
-        raise TypeError(f"Expected JSON object to have {'.'.join(path)}; got:\n{obj}")
-    return value
 
 
 # Work around https://github.com/python/mypy/issues/5374.
@@ -145,17 +120,17 @@ class SlackNotification(ABC):
         Only pull_request and push events are supported. For all other events, link to
         GitHub's documentation for the unexpected event.
         """
-        if self._event_name == "pull_request":
-            return self._get_pull_link()
-
-        if self._event_name == "push":
-            return self._get_push_link()
-
-        event_url = (
-            "https://docs.github.com/en/actions/reference/events-that-trigger-workflows"
-            + f"#{self._event_name}"
-        )
-        return f"unexpected <{event_url}|{self._event_name}> event"
+        match self._event_name:
+            case "pull_request":
+                return self._get_pull_link()
+            case "push":
+                return self._get_push_link()
+            case _:
+                event_url = (
+                    "https://docs.github.com/en/actions/reference/"
+                    f"events-that-trigger-workflows#{self._event_name}"
+                )
+                return f"unexpected <{event_url}|{self._event_name}> event"
 
     def _get_pull_link(self) -> str:
         """Return a Slack link to the pull request for a pull_request event."""
@@ -233,19 +208,18 @@ class SlackNotification(ABC):
             print(url_error, file=stderr)
             return None
 
-        if not isinstance(response_body, dict):
-            raise TypeError(f"Expected JSON response; got:\n{response_body}")
-
-        if graphql_errors := response_body.get("errors"):
-            raise ValueError(graphql_errors)
-
-        return cast(JsonObject, response_body)
+        match response_body:
+            case dict():
+                if graphql_errors := response_body.get("errors"):
+                    raise ValueError(graphql_errors)
+                return cast(JsonObject, response_body)
+            case _:
+                raise TypeError(f"Expected JSON response; got:\n{response_body}")
 
     def _validate_pr_num(self, response: JsonObject) -> Optional[int]:
         """Return the pull request number contained in the given response.
 
-        Return None if the response isn't for a commit merged to the default branch.
-        Raise a TypeError if the response is malformed.
+        Return None if it couldn't be determined.
 
         response: the GitHub GraphQL response to the _PULL_REQUEST_FOR_BASE_BRANCH_OID
         query, which gets: "the merged Pull Request that introduced the commit to the
@@ -253,44 +227,24 @@ class SlackNotification(ABC):
         returns open Pull Requests associated with the commit."
         ~ https://docs.github.com/en/graphql/reference/objects#commit
         """
-        prs_path = ("data", "repository", "object", "associatedPullRequests")
-        pull_requests = _get_json_value(response, prs_path)
-        if not isinstance(pull_requests, dict):
-            raise TypeError(
-                f"Expected GraphQL response to {self._GRAPHQL_QUERY_PATH} to have an "
-                f"object at {'.'.join(prs_path)}; got:\n{response}"
-            )
-
-        nodes = pull_requests.get("nodes")
-        if not isinstance(nodes, list):
-            raise TypeError(
-                f"Expected GraphQL response to {self._GRAPHQL_QUERY_PATH} to have an "
-                f"array at {'.'.join(prs_path)}.nodes; got:\n{response}"
-            )
-        if pull_requests.get("totalCount") != 1 or len(nodes) != 1:
-            return None
-
-        node = nodes[0]
-        if not isinstance(node, dict):
-            raise TypeError(
-                f"Expected GraphQL response to {self._GRAPHQL_QUERY_PATH} to have an "
-                f"object at {'.'.join(prs_path)}.nodes[0]; got:\n{response}"
-            )
-
-        oid = _get_json_value(node, ("mergeCommit", "oid"))
-        if not isinstance(oid, str):
-            raise TypeError(
-                f"Expected GraphQL response to {self._GRAPHQL_QUERY_PATH} to have a "
-                f"string at {'.'.join(prs_path)}.nodes[0].mergeCommit.oid; got:\n"
-                f"{response}"
-            )
-        if oid != self._sha:
-            return None
-
-        pr_number = node.get("number")
-        if not isinstance(pr_number, int):
-            raise TypeError(
-                f"Expected GraphQL response to {self._GRAPHQL_QUERY_PATH} to have an "
-                f"integer at {'.'.join(prs_path)}.nodes[0].number; got:\n{response}"
-            )
-        return pr_number
+        match response:
+            case {
+                "data": {
+                    "repository": {
+                        "object": {
+                            "associatedPullRequests": {
+                                "nodes": [
+                                    {
+                                        "mergeCommit": {"oid": self._sha},
+                                        "number": int(pr_number),
+                                    }
+                                ],
+                                "totalCount": 1,
+                            }
+                        }
+                    }
+                }
+            }:
+                return pr_number
+            case _:
+                return None
