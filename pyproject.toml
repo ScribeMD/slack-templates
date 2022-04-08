@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool]
   [tool.black]
-  target-version = ["py39"]
+  target-version = ["py310"]
 
   [tool.commitizen]
   version = "0.6.8"
@@ -35,7 +35,7 @@ build-backend = "poetry.core.masonry.api"
 
   [tool.poetry.dependencies]
   # Keep in sync with .pre-commit-config.yaml and .tool-versions.
-  python = "^3.9.14"
+  python = "^3.10.7"
 
   [tool.poetry.dev-dependencies]
   bandit = "^1.7.4"
