@@ -154,6 +154,11 @@ repos:
 
   # Check for issues.
 
+  ## Pre-commit
+  - repo: meta
+    hooks:
+      - id: check-useless-excludes
+
   ## Python
   - repo: https://github.com/PyCQA/pydocstyle
     rev: 6.1.1
