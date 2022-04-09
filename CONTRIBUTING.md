@@ -44,9 +44,11 @@
   ```sh
   pre-commit install \
     --hook-type commit-msg \
+    --hook-type post-checkout \
     --hook-type pre-commit \
     --hook-type pre-merge-commit \
-    --hook-type pre-push
+    --hook-type pre-push \
+    --install-hooks
   ```
 
 ## Expectations
