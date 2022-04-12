@@ -29,9 +29,10 @@ class PullRequestAssignment(SlackNotification):
     def get_message(self) -> str:
         """Return a message assigning a pull request."""
         actor = self.get_actor()
-        if actor == self._assignee:
-            assignment = "self-assigned"
-        else:
-            assignment = f"assigned *{self._assignee}* to"
+        assignment = (
+            "self-assigned"
+            if actor == self._assignee
+            else f"assigned *{self._assignee}* to"
+        )
         event_info = self.get_event_info(self._author)
         return f"{actor} {assignment} {event_info}."
