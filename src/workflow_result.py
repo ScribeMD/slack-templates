@@ -39,16 +39,17 @@ class WorkflowResult(SlackNotification):
 
     def _get_workflow_result(self) -> str:
         """Return a single workflow result summarizing the job results."""
-        if len(self._job_results) == 1:
-            return self._job_results[0]
         if all(result == "skipped" for result in self._job_results):
             return "skipped"
         if all(result in ("success", "skipped") for result in self._job_results):
             return "success"
 
         # The workflow was unsuccessful; return the most severe result present.
-        for result in ("failure", "cancelled"):
-            if result in self._job_results:
-                return result
-
-        return " ".join(self._job_results)
+        return next(
+            (
+                result
+                for result in ("failure", "cancelled")
+                if result in self._job_results
+            ),
+            " ".join(self._job_results),
+        )

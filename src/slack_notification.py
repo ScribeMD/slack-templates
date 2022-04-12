@@ -133,8 +133,7 @@ class SlackNotification(ABC):
             return environ["GITHUB_HEAD_REF"]
 
         pattern = r"refs/heads/([^/]+)"
-        match = fullmatch(pattern, self._ref)
-        if not match:
+        if not (match := fullmatch(pattern, self._ref)):
             raise ValueError(
                 f'Expected $GITHUB_REF to match "{pattern}"; got: {self._ref}'
             )
@@ -161,8 +160,7 @@ class SlackNotification(ABC):
     def _get_pull_link(self) -> str:
         """Return a Slack link to the pull request for a pull_request event."""
         pattern = r"refs/pull/(\d+)/merge"
-        match = fullmatch(pattern, self._ref, ASCII)
-        if not match:
+        if not (match := fullmatch(pattern, self._ref, ASCII)):
             raise ValueError(
                 f'Expected $GITHUB_REF to match "{pattern}"; got: {self._ref}'
             )
@@ -191,8 +189,7 @@ class SlackNotification(ABC):
         TypeError if the response is malformed.
         """
         pattern = r"([^/]+)/([^/]+)"
-        match = fullmatch(pattern, self._repository)
-        if not match:
+        if not (match := fullmatch(pattern, self._repository)):
             raise ValueError(
                 f'Expected $GITHUB_REPOSITORY to match "{pattern}"; got: '
                 f"{self._repository}"
@@ -209,11 +206,11 @@ class SlackNotification(ABC):
                 "oid": self._sha,
             },
         }
-        response = self._graphql_request(query)
-        if not response:
-            return None
-
-        return self._validate_pr_num(response)
+        return (
+            self._validate_pr_num(response)
+            if (response := self._graphql_request(query))
+            else None
+        )
 
     def _graphql_request(self, body: JsonObject) -> Optional[JsonObject]:
         """Return the parsed JSON response for a GitHub GraphQL request.
@@ -238,8 +235,7 @@ class SlackNotification(ABC):
         if not isinstance(response_body, dict):
             raise TypeError(f"Expected JSON response; got:\n{response_body}")
 
-        graphql_errors = response_body.get("errors")
-        if graphql_errors:
+        if graphql_errors := response_body.get("errors"):
             raise ValueError(graphql_errors)
 
         return cast(JsonObject, response_body)

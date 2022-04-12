@@ -30,9 +30,10 @@ class ReviewersAssignment(SlackNotification):
     def get_message(self) -> str:
         """Return a message requesting review of a pull request."""
         actor = self.get_actor()
-        if f"*{actor}*" == self._reviewers:
-            request = "self-requests review"
-        else:
-            request = f"requests review from {self._reviewers}"
+        request = (
+            "self-requests review"
+            if f"*{actor}*" == self._reviewers
+            else f"requests review from {self._reviewers}"
+        )
         event_info = self.get_event_info(self._author)
         return f"{actor} {request} of {event_info}."
