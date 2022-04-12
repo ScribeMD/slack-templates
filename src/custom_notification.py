@@ -1,7 +1,10 @@
 """Offer CustomNotification class."""
+from dataclasses import dataclass
+
 from .slack_notification import SlackNotification
 
 
+@dataclass
 class CustomNotification(SlackNotification):
     """Subclass SlackNotification for custom notifications.
 
@@ -11,6 +14,8 @@ class CustomNotification(SlackNotification):
     Overrides:
     get_message(): Return the message passed to the constructor.
     """
+
+    _message: str
 
     def __init__(self, token: str, message: str):
         """Construct a SlackNotification for custom notification.

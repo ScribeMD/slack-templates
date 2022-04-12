@@ -1,10 +1,12 @@
 """Offer WorkflowResult class."""
 from collections.abc import Sequence
+from dataclasses import dataclass
 from typing import Optional
 
 from .slack_notification import SlackNotification
 
 
+@dataclass
 class WorkflowResult(SlackNotification):
     """Subclass SlackNotification for the result of a GitHub Actions workflow.
 
@@ -14,6 +16,8 @@ class WorkflowResult(SlackNotification):
     Overrides:
     get_message(): Return a message reporting the result of a CI workflow.
     """
+
+    _job_results: Sequence[str]
 
     def __init__(
         self, token: str, job_results: Sequence[str], pr_number: Optional[int] = None

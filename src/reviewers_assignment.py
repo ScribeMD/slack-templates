@@ -1,7 +1,10 @@
 """Offer ReviewersAssignment class."""
+from dataclasses import dataclass
+
 from .slack_notification import SlackNotification
 
 
+@dataclass
 class ReviewersAssignment(SlackNotification):
     """Subclass SlackNotification for assignment of code reviewers.
 
@@ -11,6 +14,9 @@ class ReviewersAssignment(SlackNotification):
     Overrides:
     get_message(): Return a message assigning reviewers for a pull request.
     """
+
+    _reviewers: str
+    _author: str
 
     def __init__(self, token: str, reviewers: str, author: str, pr_number: int):
         """Construct a SlackNotification for assignment of code reviewers.

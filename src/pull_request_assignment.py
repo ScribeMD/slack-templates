@@ -1,7 +1,10 @@
 """Offer PullRequestAssignment class."""
+from dataclasses import dataclass
+
 from .slack_notification import SlackNotification
 
 
+@dataclass
 class PullRequestAssignment(SlackNotification):
     """Subclass SlackNotification for assignment of a pull request.
 
@@ -11,6 +14,9 @@ class PullRequestAssignment(SlackNotification):
     Overrides:
     get_message(): Return a message assigning a pull request.
     """
+
+    _assignee: str
+    _author: str
 
     def __init__(self, token: str, assignee: str, author: str, pr_number: int):
         """Construct a SlackNotification for assignment of a pull request.

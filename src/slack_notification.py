@@ -1,6 +1,7 @@
 """Offer SlackNotification abstract base class."""
 from abc import ABC, abstractmethod
-from collections.abc import Mapping, Sequence
+from collections.abc import Mapping, MutableMapping, Sequence
+from dataclasses import dataclass
 from json import dumps, load
 from os import environ
 from os.path import dirname, join
@@ -39,6 +40,8 @@ def _get_json_value(obj: JsonObject, path: Sequence[str]) -> JsonValue:
     return value
 
 
+# Work around https://github.com/python/mypy/issues/5374.
+@dataclass  # type: ignore[misc]
 class SlackNotification(ABC):
     """Offer utilities for issuing Slack notifications from GitHub Actions.
 
@@ -57,6 +60,14 @@ class SlackNotification(ABC):
     )
     """Contains a GraphQL query that gets the pull request associated with a commit."""
 
+    _headers: MutableMapping[str, str]
+    _pr_number: Optional[int]
+    _actor = environ["GITHUB_ACTOR"]
+    _repository = environ["GITHUB_REPOSITORY"]
+    _repository_url = f"{environ['GITHUB_SERVER_URL']}/{_repository}"
+    _event_name = environ["GITHUB_EVENT_NAME"]
+    _sha = environ["GITHUB_SHA"]
+
     def __init__(self, token: str, pr_number: Optional[int] = None):
         """Store the given token and some GitHub environment variables.
 
@@ -70,14 +81,6 @@ class SlackNotification(ABC):
             "Authorization": f"Bearer {token}",
         }
         self._pr_number = pr_number
-        self._actor = environ["GITHUB_ACTOR"]
-
-        server_url = environ["GITHUB_SERVER_URL"]
-        self._repository = environ["GITHUB_REPOSITORY"]
-        self._repository_url = f"{server_url}/{self._repository}"
-
-        self._event_name = environ["GITHUB_EVENT_NAME"]
-        self._sha = environ["GITHUB_SHA"]
 
     def set_slack_message(self) -> None:
         """Add environment variable SLACK_MESSAGE to GitHub Actions env.
