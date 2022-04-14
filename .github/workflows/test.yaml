@@ -31,10 +31,12 @@ jobs:
         run: poetry install
       - name: Use Docker in rootless mode.
         uses: ScribeMD/rootless-docker@0.1.1
-      - name: Run pre-commit hooks.
+      - name: Run pre-push hooks.
         uses: pre-commit/action@v2.0.3
         env:
           SKIP: no-commit-to-branch
+        with:
+          extra_args: "--all-files --hook-stage push"
       - name: Send Slack notification with job status.
         if: always()
         uses: ./
