@@ -23,6 +23,9 @@ Send Informative, Concise Slack Notifications With Minimal Effort
     - [Notify reviewers of a pull request](#notify-reviewers-of-a-pull-request)
     - [Notify assignee of a pull request](#notify-assignee-of-a-pull-request)
     - [Send a custom notification](#send-a-custom-notification)
+  - [Inputs](#inputs)
+    - [Required](#required)
+    - [Optional](#optional)
   - [Relation to slack-send](#relation-to-slack-send)
   - [Bug Reports](#bug-reports)
   - [Contributing](#contributing)
@@ -212,6 +215,56 @@ jobs:
     channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
     message: "${{ github.actor }} requests approval to run workflow."
 ```
+
+## Inputs
+
+### Required
+
+#### `bot-token`
+
+The Slack API bot token for your custom app with `chat:write` scope.
+
+#### `channel-id`
+
+The ID of a Slack channel to send notifications to. Your bot should be a member.
+Secondary-click on the channel in Slack, and select `Copy link` to copy a URL
+containing the channel ID.
+
+### Optional
+
+#### `template`
+
+default: `custom`
+
+The type of Slack notification to send:
+
+- `assignee`
+- `custom` (requires `message`)
+- `reviewers`
+- `result`
+
+#### `results` (`template: result` only)
+
+default: `${{ job.status }}`
+
+The job results to report via Slack. To report the result of an entire workflow,
+use this action from a final notify job that depends on (a.k.a., `needs`) all
+other jobs. Then, pass `join(needs.*.result, ' ')`. The highest ranking result
+will be reported:
+
+1. `failure`
+1. `cancelled`
+1. `success`
+1. `skipped`
+
+Alternatively, a custom result may be passed provided that it is quoted for use
+as a Bash command line argument.
+
+#### `message` (`template: custom` only)
+
+default: `Pass message or template to slack-templates.`
+
+A custom Slack message to send.
 
 ## Relation to slack-send
 

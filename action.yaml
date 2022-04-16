@@ -4,11 +4,13 @@ description: Send Informative, Concise Slack Notifications With Minimal Effort
 inputs:
   bot-token:
     description: >
-      Slack bot token for your custom Slack app with chat:write scope.
+      The Slack API bot token for your custom app with chat:write scope.
     required: true
   channel-id:
     description: >
-      ID of Slack channel to send notifications to. Your bot should be a member.
+      The ID of a Slack channel to send notifications to. Your bot should be a
+      member. Secondary-click on the channel in Slack, and select "Copy link" to
+      copy a URL containing the channel ID.
     required: true
   template:
     description: >
@@ -28,7 +30,7 @@ inputs:
     required: false
     default: ${{ job.status }}
   message:
-    description: A custom Slack message to send. Do not also pass template.
+    description: A custom Slack message to send. Do not also pass a template.
     required: false
     default: Pass message or template to slack-templates.
 branding:
