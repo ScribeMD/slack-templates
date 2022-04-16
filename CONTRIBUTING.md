@@ -24,6 +24,7 @@
 
 - Close and relaunch Ubuntu to source your `~/.bashrc`.
 - [Install Python's build dependencies](https://github.com/pyenv/pyenv/wiki#suggested-build-environment).
+- Run `asdf plugin add nodejs` to install the Node.js plugin for asdf.
 - Run `asdf plugin add python` to install the Python plugin for asdf.
 - Run `asdf plugin add poetry` to install the Poetry plugin for asdf.
 - Change directories to the root of this repository.
