@@ -3,6 +3,21 @@ on:
   pull_request:
     types:
       - review_requested
+  workflow_call:
+    secrets:
+      SLACK_BOT_TOKEN:
+        description: >
+          The Slack API bot token for your custom app. It will be used to
+          request review of a pull request. The token must have the chat:write
+          scope.
+        required: true
+      SLACK_REVIEW_CHANNEL_ID:
+        description: >
+          The ID of the Slack channel to use to request review of a pull
+          request. Your bot should be a member. Secondary-click on the channel
+          in Slack, and select "Copy link" to copy a URL containing the channel
+          ID.
+        required: true
 jobs:
   notify-reviewers:
     name: Notify Reviewers
