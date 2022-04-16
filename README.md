@@ -174,7 +174,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Slack notification requesting code review.
-        uses: ScribeMD/slack-template@0
+        uses: ScribeMD/slack-templates@0.1.2
         with:
           bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
