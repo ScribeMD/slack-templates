@@ -40,17 +40,7 @@
 - Close and relaunch Ubuntu to source your `~/.bashrc`.
 - Run `poetry install` to install all Python dependencies.
 - Run `poetry shell` to activate the Poetry virtual environment.
-- Install all pre-commit hooks by running:
-
-  ```sh
-  pre-commit install \
-    --hook-type commit-msg \
-    --hook-type post-checkout \
-    --hook-type pre-commit \
-    --hook-type pre-merge-commit \
-    --hook-type pre-push \
-    --install-hooks
-  ```
+- Install all pre-commit hooks by running `pre-commit install --install-hooks`.
 
 ## Expectations
 
