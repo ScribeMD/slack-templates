@@ -91,7 +91,6 @@ class SlackNotification(ABC):
     @abstractmethod
     def get_message(self) -> str:
         """Return the message to be set by set_slack_message()."""
-        ...
 
     def get_actor(self) -> str:
         """Return the GitHub user that triggered this workflow."""
