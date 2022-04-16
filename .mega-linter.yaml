@@ -12,6 +12,7 @@ JSON_PRETTIER_FILE_EXTENSIONS:
   - .json
   - .md
 CREDENTIALS_SECRETLINT_ARGUMENTS: --secretlintignore .gitignore
+MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .markdownlint.yaml
 PYTHON_FLAKE8_PRE_COMMANDS:
   - command: pip install flake8-bugbear==22.3.23 mccabe==0.6.1
 PYTHON_ISORT_CONFIG_FILE: LINTER_DEFAULT
