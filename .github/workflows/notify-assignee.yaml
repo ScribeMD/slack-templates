@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Check out repository.
         uses: actions/checkout@v3.0.1
+        with:
+          repository: ScribeMD/slack-templates
       - name: Send Slack notification assigning pull request.
         uses: ./
         with:
