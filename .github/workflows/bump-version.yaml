@@ -25,7 +25,6 @@ jobs:
       - name: Check out repository.
         uses: actions/checkout@v3.0.1
         with:
-          repository: ScribeMD/slack-templates
           fetch-depth: 0
       - name: Push a commit to main to bump version and update changelog.
         uses: commitizen-tools/commitizen-action@0.12.0
@@ -36,7 +35,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commitizen_version: 2.24.0 # Keep in sync with pyproject.toml.
       - name: Send Slack notification with job status.
-        uses: ./
+        uses: ScribeMD/slack-templates@0.2.1
         with:
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_ACTIONS_CHANNEL_ID }}
