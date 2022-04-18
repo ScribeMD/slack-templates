@@ -9,9 +9,6 @@ build-backend = "poetry.core.masonry.api"
   [tool.commitizen]
   version = "0.2.1"
   version_files = [
-    ".github/workflows/bump-version.yaml:slack-templates@",
-    ".github/workflows/notify-assignee.yaml:slack-templates@",
-    ".github/workflows/notify-reviewers.yaml:slack-templates@",
     "pyproject.toml:version",
     "README.md:slack-templates@"
   ]

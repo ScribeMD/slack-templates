@@ -23,8 +23,12 @@ jobs:
     name: Notify Reviewers
     runs-on: ubuntu-20.04
     steps:
+      - name: Check out slack-templates.
+        uses: actions/checkout@v3.0.1
+        with:
+          repository: ScribeMD/slack-templates
       - name: Send Slack notification requesting code review.
-        uses: ScribeMD/slack-templates@0.2.1
+        uses: ./
         with:
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_REVIEW_CHANNEL_ID }}
