@@ -7,11 +7,11 @@ FAIL_IF_MISSING_LINTER_IN_FLAVOR: true
 FORMATTERS_DISABLE_ERRORS: false
 PRINT_ALPACA: false
 SHOW_ELAPSED_TIME: true
+CREDENTIALS_SECRETLINT_ARGUMENTS: --secretlintignore .gitignore
 JSON_PRETTIER_FILE_EXTENSIONS:
   - .graphql
   - .json
   - .md
-CREDENTIALS_SECRETLINT_ARGUMENTS: --secretlintignore .gitignore
 MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .markdownlint.yaml
 PYTHON_FLAKE8_PRE_COMMANDS:
   - command: pip install flake8-bugbear==22.3.23 mccabe==0.6.1
