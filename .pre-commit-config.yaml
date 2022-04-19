@@ -24,9 +24,15 @@ repos:
       - id: poetry-install
       - id: pre-commit-install
       - id: megalinter
-        args: &megalinter-args [--flavor, python, --release, v5.11.0]
+        args:
+          - --env
+          - "'DISABLE_LINTERS=COPYPASTE_JSCPD,GRAPHQL_GRAPHQL_SCHEMA_LINTER'"
+          - --flavor
+          - python
+          - --release
+          - v5.11.0
       - id: megalinter-all
-        args: *megalinter-args
+        args: [--flavor, python, --release, v5.11.0]
 
   ## Python
   - repo: https://github.com/pre-commit/mirrors-autopep8
