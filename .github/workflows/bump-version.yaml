@@ -22,7 +22,7 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-20.04
     steps:
-      - name: Check out caller's repository.
+      - name: Check out repository.
         uses: actions/checkout@v3.0.1
         with:
           fetch-depth: 0
@@ -34,13 +34,16 @@ jobs:
           git_email: commitizen-github-action[bot]@users.noreply.github.com
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commitizen_version: 2.24.0 # Keep in sync with pyproject.toml.
-      - name: Check out slack-templates.
-        uses: actions/checkout@v3.0.1
+      - name: Send Slack notification with job status (self-test).
+        if: ${{ github.repository == 'ScribeMD/slack-templates' }}
+        uses: ./
         with:
-          repository: ScribeMD/slack-templates
-          path: slack-templates
-      - name: Send Slack notification with job status.
-        uses: ./slack-templates/
+          bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel-id: ${{ secrets.SLACK_ACTIONS_CHANNEL_ID }}
+          template: result
+      - name: Send Slack notification with job status (called workflow).
+        if: ${{ github.repository != 'ScribeMD/slack-templates' }}
+        uses: ScribeMD/slack-templates@main
         with:
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_ACTIONS_CHANNEL_ID }}
