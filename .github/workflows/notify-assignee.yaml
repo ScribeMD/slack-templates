@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Check out slack-templates.
-        uses: actions/checkout@v3.0.1
+        uses: actions/checkout@v3.0.2
         with:
           repository: ScribeMD/slack-templates
       - name: Send Slack notification assigning pull request.
