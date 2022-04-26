@@ -14,7 +14,7 @@ jobs:
       - name: Check out repository.
         uses: actions/checkout@v3.0.2
       - name: Run pre-commit hooks.
-        uses: ScribeMD/pre-commit-action@0.1.5
+        uses: ScribeMD/pre-commit-action@0.1.6
       - name: Send Slack notification with job status.
         if: always()
         uses: ./
