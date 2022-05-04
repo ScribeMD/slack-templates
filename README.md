@@ -288,4 +288,4 @@ notification you received taking care to preserve the links.
 
 ## Changelog
 
-Please refer to [CHANGELOG.md](CHANGELOG.md).
+Please refer to [`CHANGELOG.md`](CHANGELOG.md).
