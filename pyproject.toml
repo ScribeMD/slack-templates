@@ -39,7 +39,7 @@ build-backend = "poetry.core.masonry.api"
 
   [tool.poetry.dev-dependencies]
   bandit = "^1.7.4"
-  commitizen = "^2.24.0" # Keep in sync with .pre-commit-config.yaml.
+  commitizen = "^2.24.0" # Keep in sync with .pre-commit-config.yaml and bump-version.yaml.
   flake8 = "^4.0.1"
   flake8-black = "^0.3.2"
   flake8-bugbear = "^22.3.23"

@@ -33,7 +33,7 @@ jobs:
           git_name: commitizen-github-action[bot]
           git_email: commitizen-github-action[bot]@users.noreply.github.com
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          commitizen_version: 2.24.0 # Keep in sync with pyproject.toml.
+          commitizen_version: 2.24.0 # Keep in sync with .pre-commit-config.yaml and pyproject.toml.
       - name: Send Slack notification with job status (self-test).
         if: ${{ github.repository == 'ScribeMD/slack-templates' }}
         uses: ./
