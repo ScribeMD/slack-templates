@@ -28,7 +28,6 @@ Send Informative, Concise Slack Notifications With Minimal Effort
     - [Optional](#optional)
   - [Relation to slack-send](#relation-to-slack-send)
   - [Bug Reports](#bug-reports)
-  - [Contributing](#contributing)
   - [Changelog](#changelog)
 
 <!--TOC-->
@@ -286,10 +285,6 @@ If you are not receiving notifications, please review
 containing the GitHub Action's logs if that doesn't resolve your issue. If you
 are receiving nondescript Slack notifications, please file a bug report with the
 notification you received taking care to preserve the links.
-
-## Contributing
-
-Please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Changelog
 
