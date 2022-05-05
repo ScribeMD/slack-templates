@@ -27,7 +27,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Push a commit to main to bump version and update changelog.
-        uses: commitizen-tools/commitizen-action@0.12.0
+        uses: commitizen-tools/commitizen-action@0.13.0
         with:
           branch: main
           git_name: commitizen-github-action[bot]
@@ -35,14 +35,14 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commitizen_version: 2.24.0 # Keep in sync with .pre-commit-config.yaml and pyproject.toml.
       - name: Send Slack notification with job status (self-test).
-        if: ${{ github.repository == 'ScribeMD/slack-templates' }}
+        if: always() && github.repository == 'ScribeMD/slack-templates'
         uses: ./
         with:
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_ACTIONS_CHANNEL_ID }}
           template: result
       - name: Send Slack notification with job status (called workflow).
-        if: ${{ github.repository != 'ScribeMD/slack-templates' }}
+        if: always() && github.repository != 'ScribeMD/slack-templates'
         uses: ScribeMD/slack-templates@main
         with:
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
