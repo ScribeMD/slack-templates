@@ -74,6 +74,7 @@ class SlackNotification(ABC):
         self._repository_url = f"{server_url}/{self._repository}"
 
         self._event_name = environ["GITHUB_EVENT_NAME"]
+        self._ref_name = environ["GITHUB_REF_NAME"]
         self._sha = environ["GITHUB_SHA"]
 
     def set_slack_message(self) -> None:
@@ -130,7 +131,7 @@ class SlackNotification(ABC):
         return (
             environ["GITHUB_HEAD_REF"]
             if self._event_name == "pull_request"
-            else environ["GITHUB_REF_NAME"]
+            else self._ref_name
         )
 
     def _get_event_link(self) -> str:
@@ -153,10 +154,11 @@ class SlackNotification(ABC):
 
     def _get_pull_link(self) -> str:
         """Return a Slack link to the pull request for a pull_request event."""
-        ref = environ["GITHUB_REF"]
-        pattern = r"refs/pull/(\d+)/merge"
-        if not (match := fullmatch(pattern, ref, ASCII)):
-            raise ValueError(f'Expected $GITHUB_REF to match "{pattern}"; got: {ref}')
+        pattern = r"(\d+)/merge"
+        if not (match := fullmatch(pattern, self._ref_name, ASCII)):
+            raise ValueError(
+                f'Expected $GITHUB_REF_NAME to match "{pattern}"; got: {self._ref_name}'
+            )
 
         match_group: str = match.group(1)
         pull_request_number = int(match_group)
