@@ -39,17 +39,17 @@ build-backend = "poetry.core.masonry.api"
 
   [tool.poetry.dev-dependencies]
   bandit = "^1.7.4"
-  commitizen = "^2.24.0" # Keep in sync with .pre-commit-config.yaml.
+  commitizen = "^2.27.0" # Keep in sync with .pre-commit-config.yaml.
   flake8 = "^4.0.1"
-  flake8-black = "^0.3.2"
-  flake8-bugbear = "^22.3.23"
+  flake8-black = "^0.3.3"
+  flake8-bugbear = "^22.4.25"
   flake8-isort = "^4.1.1"
   mccabe = "^0.6.1"
-  mypy = "^0.942"
-  pre-commit = "^2.18.1"
+  mypy = "^0.950"
+  pre-commit = "^2.19.0"
   pycodestyle = "^2.8.0"
   pydocstyle = "^6.1.1"
-  pylint = "^2.13.5"
+  pylint = "^2.13.9"
 
   [tool.pylint.messages_control]
   disable = "bad-whitespace, bad-continuation"
