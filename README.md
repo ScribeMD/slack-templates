@@ -1,7 +1,6 @@
 # slack-templates
 
 [![Test](https://github.com/ScribeMD/slack-templates/workflows/Test/badge.svg)](https://github.com/ScribeMD/slack-templates/actions/workflows/test.yaml)
-[![Bump Version](https://github.com/ScribeMD/slack-templates/workflows/Bump%20Version/badge.svg)](https://github.com/ScribeMD/slack-templates/actions/workflows/bump-version.yaml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=flat-square)](https://conventionalcommits.org)
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
