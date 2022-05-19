@@ -85,15 +85,15 @@ because merges will be indistinguishable from direct pushes.
 
 - Add the following step to the bottom of the job:
 
-```yaml
-- name: Send Slack notification with job status.
-  if: always()
-  uses: ScribeMD/slack-templates@0.4.0
-  with:
-    bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
-    channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
-    template: result
-```
+  ```yaml
+  - name: Send Slack notification with job status.
+    if: always()
+    uses: ScribeMD/slack-templates@0.4.0
+    with:
+      bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
+      channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
+      template: result
+  ```
 
 ### Summarize the results of an entire workflow
 
