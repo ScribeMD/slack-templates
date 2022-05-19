@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out repository.
         uses: actions/checkout@v3.0.2
+        with:
+          fetch-depth: 0
       - name: Run pre-commit hooks.
         uses: ScribeMD/pre-commit-action@0.6.0
       - name: Send Slack notification with job status.
