@@ -7,7 +7,7 @@ build-backend = "poetry.core.masonry.api"
   target-version = ["py39"]
 
   [tool.commitizen]
-  version = "0.3.2"
+  version = "0.4.0"
   version_files = [
     "pyproject.toml:version",
     "README.md:slack-templates@"
@@ -28,7 +28,7 @@ build-backend = "poetry.core.masonry.api"
 
   [tool.poetry]
   name = "slack-templates"
-  version = "0.3.2"
+  version = "0.4.0"
   description = "Send Informative, Concise Slack Notifications With Minimal Effort"
   authors = ["Kurt von Laven <kurt.von.laven@gmail.com>"]
   license = "MIT"
