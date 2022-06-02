@@ -161,9 +161,9 @@ class SlackNotification(ABC):
             )
 
         match_group: str = match.group(1)
-        pull_request_number = int(match_group)
-        event_url = f"{self._repository_url}/pull/{pull_request_number}"
-        return f"<{event_url}|#{pull_request_number}> from"
+        pr_number = int(match_group)
+        event_url = f"{self._repository_url}/pull/{pr_number}"
+        return f"<{event_url}|#{pr_number}> from"
 
     def _get_push_link(self) -> str:
         """Return a Slack link to the pull request for a push event.
@@ -171,15 +171,15 @@ class SlackNotification(ABC):
         If the associated pull request cannot be determined, link to the pushed head
         commit instead.
         """
-        pull_request_number = self._get_associated_pull_request_number()
-        if pull_request_number is None:
+        pr_number = self._get_associated_pr_number()
+        if pr_number is None:
             event_url = f"{self._repository_url}/commit/{self._sha}"
             return f"push of <{event_url}|{self._sha}> to"
 
-        event_url = f"{self._repository_url}/pull/{pull_request_number}"
-        return f"merge of <{event_url}|#{pull_request_number}> to"
+        event_url = f"{self._repository_url}/pull/{pr_number}"
+        return f"merge of <{event_url}|#{pr_number}> to"
 
-    def _get_associated_pull_request_number(self) -> Optional[int]:
+    def _get_associated_pr_number(self) -> Optional[int]:
         """Return the number of the merged pull request for the pushed commit.
 
         This is the pull request that introduced the pushed commit to the branch. Return
@@ -285,10 +285,10 @@ class SlackNotification(ABC):
         if oid != self._sha:
             return None
 
-        pull_request_number = node.get("number")
-        if not isinstance(pull_request_number, int):
+        pr_number = node.get("number")
+        if not isinstance(pr_number, int):
             raise TypeError(
                 f"Expected GraphQL response to {self._GRAPHQL_QUERY_PATH} to have an "
                 f"integer at {'.'.join(prs_path)}.nodes[0].number; got:\n{response}"
             )
-        return pull_request_number
+        return pr_number
