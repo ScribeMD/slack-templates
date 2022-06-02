@@ -4,7 +4,7 @@ from collections.abc import Mapping, Sequence
 from json import dumps, load
 from os import environ
 from os.path import dirname, join
-from re import ASCII, fullmatch
+from re import fullmatch
 from sys import stderr
 from typing import Any, Optional, Union, cast
 from urllib.error import URLError
@@ -57,16 +57,19 @@ class SlackNotification(ABC):
     )
     """Contains a GraphQL query that gets the pull request associated with a commit."""
 
-    def __init__(self, token: str):
+    def __init__(self, token: str, pr_number: Optional[int] = None):
         """Store the given token and some GitHub environment variables.
 
         token: the token to use to authenticate to the GitHub API. Obtain from
         '${{ github.token }}' in the workflow.
+        pr_number: the pull request number if applicable. Obtain from
+        '${{ github.event.pull_request.number }}' in the workflow.
         """
         self._headers = {
             "Accept": "application/vnd.github.v4.json",
             "Authorization": f"Bearer {token}",
         }
+        self._pr_number = pr_number
         self._actor = environ["GITHUB_ACTOR"]
 
         server_url = environ["GITHUB_SERVER_URL"]
@@ -74,7 +77,6 @@ class SlackNotification(ABC):
         self._repository_url = f"{server_url}/{self._repository}"
 
         self._event_name = environ["GITHUB_EVENT_NAME"]
-        self._ref_name = environ["GITHUB_REF_NAME"]
         self._sha = environ["GITHUB_SHA"]
 
     def set_slack_message(self) -> None:
@@ -131,7 +133,7 @@ class SlackNotification(ABC):
         return (
             environ["GITHUB_HEAD_REF"]
             if self._event_name == "pull_request"
-            else self._ref_name
+            else environ["GITHUB_REF_NAME"]
         )
 
     def _get_event_link(self) -> str:
@@ -154,16 +156,8 @@ class SlackNotification(ABC):
 
     def _get_pull_link(self) -> str:
         """Return a Slack link to the pull request for a pull_request event."""
-        pattern = r"(\d+)/merge"
-        if not (match := fullmatch(pattern, self._ref_name, ASCII)):
-            raise ValueError(
-                f'Expected $GITHUB_REF_NAME to match "{pattern}"; got: {self._ref_name}'
-            )
-
-        match_group: str = match.group(1)
-        pr_number = int(match_group)
-        event_url = f"{self._repository_url}/pull/{pr_number}"
-        return f"<{event_url}|#{pr_number}> from"
+        event_url = f"{self._repository_url}/pull/{self._pr_number}"
+        return f"<{event_url}|#{self._pr_number}> from"
 
     def _get_push_link(self) -> str:
         """Return a Slack link to the pull request for a push event.
@@ -187,6 +181,9 @@ class SlackNotification(ABC):
         hasn't been merged to the default branch or the network failed). Raise a
         TypeError if the response is malformed.
         """
+        if self._pr_number is not None:
+            return self._pr_number
+
         pattern = r"([^/]+)/([^/]+)"
         if not (match := fullmatch(pattern, self._repository)):
             raise ValueError(
@@ -205,11 +202,13 @@ class SlackNotification(ABC):
                 "oid": self._sha,
             },
         }
-        return (
+
+        self._pr_number = (
             self._validate_pr_num(response)
             if (response := self._graphql_request(query))
             else None
         )
+        return self._pr_number
 
     def _graphql_request(self, body: JsonObject) -> Optional[JsonObject]:
         """Return the parsed JSON response for a GitHub GraphQL request.

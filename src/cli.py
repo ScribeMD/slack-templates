@@ -16,13 +16,28 @@ def get_slack_notification(arguments: Sequence[str]) -> SlackNotification:
     the first element of sys.argv since this is merely the name of the Python script
     itself.
     """
-    template, results, message, token, author, reviewers, assignee = arguments
+    (
+        template,
+        results,
+        message,
+        token,
+        author,
+        reviewers,
+        assignee,
+        pr_number_str,
+    ) = arguments
+
     if template == "result":
-        return WorkflowResult(token, results.split())
+        try:
+            pr_number = int(pr_number_str)
+        except ValueError:
+            # GitHub only sends the pull request number for pull_request events.
+            pr_number = None
+        return WorkflowResult(token, results.split(), pr_number)
     if template == "reviewers":
-        return ReviewersAssignment(token, reviewers, author)
+        return ReviewersAssignment(token, reviewers, author, int(pr_number_str))
     if template == "assignee":
-        return PullRequestAssignment(token, assignee, author)
+        return PullRequestAssignment(token, assignee, author, int(pr_number_str))
     if template == "custom":
         return CustomNotification(token, message)
     return CustomNotification(

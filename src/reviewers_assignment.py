@@ -12,7 +12,7 @@ class ReviewersAssignment(SlackNotification):
     get_message(): Return a message assigning reviewers for a pull request.
     """
 
-    def __init__(self, token: str, reviewers: str, author: str):
+    def __init__(self, token: str, reviewers: str, author: str, pr_number: int):
         """Construct a SlackNotification for assignment of code reviewers.
 
         token: the token to use to authenticate to the GitHub API. Obtain from
@@ -22,8 +22,10 @@ class ReviewersAssignment(SlackNotification):
         in the workflow.
         author: the GitHub user who authored the pull request. Obtain from
         '${{ github.event.pull_request.user.login }}' in the workflow.
+        pr_number: the pull request number. Obtain from
+        '${{ github.event.pull_request.number }}' in the workflow.
         """
-        super().__init__(token)
+        super().__init__(token, pr_number)
         self._reviewers = reviewers
         self._author = author
 
