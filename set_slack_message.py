@@ -3,7 +3,7 @@
 """Set Slack message for GitHub Action.
 
 Usage: python set_slack_message.py \
-    <template> <results> <message> <token> <author> <reviewers> <assignee>
+    <template> <results> <message> <token> <author> <reviewers> <assignee> <pr_number>
 """
 import sys
 

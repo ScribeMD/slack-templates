@@ -1,5 +1,6 @@
 """Offer WorkflowResult class."""
 from collections.abc import Sequence
+from typing import Optional
 
 from .slack_notification import SlackNotification
 
@@ -14,7 +15,9 @@ class WorkflowResult(SlackNotification):
     get_message(): Return a message reporting the result of a CI workflow.
     """
 
-    def __init__(self, token: str, job_results: Sequence[str]):
+    def __init__(
+        self, token: str, job_results: Sequence[str], pr_number: Optional[int] = None
+    ):
         """Construct a SlackNotification for the result of a CI workflow.
 
         token: the token to use to authenticate to the GitHub API. Obtain from
@@ -22,8 +25,10 @@ class WorkflowResult(SlackNotification):
         job_results: the results of the jobs in the workflow. Obtain from
         "${{ join(needs.*.result, ' ') }}" or '${{ job.status }}' in the workflow.
         Alternatively, pass a single custom result.
+        pr_number: the pull request number if applicable. Obtain from
+        '${{ github.event.pull_request.number }}' in the workflow.
         """
-        super().__init__(token)
+        super().__init__(token, pr_number)
         self._job_results = job_results
 
     def get_message(self) -> str:
