@@ -166,7 +166,11 @@ class SlackNotification(ABC):
         return f"<{event_url}|#{pull_request_number}> from"
 
     def _get_push_link(self) -> str:
-        """Return a Slack link to the pushed head commit for a push event."""
+        """Return a Slack link to the pull request for a push event.
+
+        If the associated pull request cannot be determined, link to the pushed head
+        commit instead.
+        """
         pull_request_number = self._get_associated_pull_request_number()
         if pull_request_number is None:
             event_url = f"{self._repository_url}/commit/{self._sha}"
