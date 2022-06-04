@@ -130,11 +130,11 @@ class SlackNotification(ABC):
         For pull_request events, return the head (a.k.a., from) branch, not the base
         (a.k.a., to) branch. For push events, return the branch that was pushed to.
         """
-        return (
-            environ["GITHUB_HEAD_REF"]
+        return environ[
+            "GITHUB_HEAD_REF"
             if self._event_name == "pull_request"
-            else environ["GITHUB_REF_NAME"]
-        )
+            else "GITHUB_REF_NAME"
+        ]
 
     def _get_event_link(self) -> str:
         """Return a Slack link appropriate to the current GitHub Actions event.
