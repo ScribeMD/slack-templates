@@ -42,7 +42,8 @@ runs:
     - name: Set up Python.
       uses: actions/setup-python@v3.1.2
       with:
-        # Keep in sync with .tool-versions.
+        # Keep in sync with .pre-commit-config.yaml, .tool-versions, and
+        # pyproject.toml.
         python-version: 3.9.7
     - name: Configure Slack notification.
       run: >
