@@ -21,6 +21,8 @@ jobs:
   notify-assignee:
     name: Notify Assignee
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read # for actions/checkout in private repositories
     steps:
       - name: Check out slack-templates.
         uses: actions/checkout@v3.0.2
