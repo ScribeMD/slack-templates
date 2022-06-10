@@ -39,12 +39,18 @@ branding:
 runs:
   using: composite
   steps:
-    - name: Set up Python.
-      uses: actions/setup-python@v3.1.2
-      with:
-        # Keep in sync with .pre-commit-config.yaml, .tool-versions, and
-        # pyproject.toml.
-        python-version: 3.9.7
+    - name: Write Python version file based on asdf Python version.
+      run: >
+        grep
+        --perl-regexp
+        --only-matching
+        "(?<=python )(\d+\.){2}\d+"
+        .tool-versions
+        >.python-version
+      shell: bash
+      working-directory: "${{ github.action_path }}"
+    - name: Set up Python based on Python version file.
+      uses: actions/setup-python@v4.0.0
     - name: Configure Slack notification.
       run: >
         python set_slack_message.py
