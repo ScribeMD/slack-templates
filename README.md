@@ -1,12 +1,12 @@
 # slack-templates
 
-[![Test](https://github.com/ScribeMD/slack-templates/workflows/Test/badge.svg)](https://github.com/ScribeMD/slack-templates/actions/workflows/test.yaml)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=flat-square)](https://conventionalcommits.org)
-[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Imports: isort](https://img.shields.io/badge/imports-isort-1674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![Test Workflow Status](https://github.com/ScribeMD/slack-templates/workflows/Test/badge.svg)](https://github.com/ScribeMD/slack-templates/actions/workflows/test.yaml)
+[![Git Hooks: pre-commit](https://img.shields.io/badge/pre--commit-Git_Hooks-orange?logo=precommit&logoColor=FAB040)](https://github.com/pre-commit/pre-commit)
+[![Commit Style: Conventional Commits](https://img.shields.io/badge/Conventional_Commits-Commit_Style-yellow?logo=conventionalcommits&logoColor=FE5196)](https://conventionalcommits.org)
+[![Code Style: Prettier](https://img.shields.io/badge/Prettier-Code_Style-FF69B4?logo=prettier&logoColor=F7B93E)](https://github.com/prettier/prettier)
+[![Code Style: Black](https://img.shields.io/badge/Black-Code_Style-000)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/isort-Imports-1674B1)](https://pycqa.github.io/isort/)
+[![Security: Bandit](https://img.shields.io/badge/Bandit-Security-yellow)](https://github.com/PyCQA/bandit)
 
 Send Informative, Concise Slack Notifications With Minimal Effort
 
