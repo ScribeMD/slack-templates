@@ -1,9 +1,9 @@
 # slack-templates
 
 [![Test Workflow Status](https://github.com/ScribeMD/slack-templates/workflows/Test/badge.svg)](https://github.com/ScribeMD/slack-templates/actions/workflows/test.yaml)
-[![Git Hooks: pre-commit](https://img.shields.io/badge/pre--commit-Git_Hooks-orange?logo=precommit&logoColor=FAB040)](https://github.com/pre-commit/pre-commit)
+[![Git Hooks: pre-commit](https://img.shields.io/badge/pre--commit-Git_Hooks-orange?logo=precommit&logoColor=FAB040)](https://pre-commit.com/)
 [![Commit Style: Conventional Commits](https://img.shields.io/badge/Conventional_Commits-Commit_Style-yellow?logo=conventionalcommits&logoColor=FE5196)](https://conventionalcommits.org)
-[![Code Style: Prettier](https://img.shields.io/badge/Prettier-Code_Style-FF69B4?logo=prettier&logoColor=F7B93E)](https://github.com/prettier/prettier)
+[![Code Style: Prettier](https://img.shields.io/badge/Prettier-Code_Style-FF69B4?logo=prettier&logoColor=F7B93E)](https://prettier.io/)
 [![Code Style: Black](https://img.shields.io/badge/Black-Code_Style-000)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/isort-Imports-1674B1)](https://pycqa.github.io/isort/)
 [![Security: Bandit](https://img.shields.io/badge/Bandit-Security-yellow)](https://github.com/PyCQA/bandit)
