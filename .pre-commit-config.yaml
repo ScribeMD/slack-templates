@@ -31,9 +31,9 @@ repos:
           - --flavor
           - python
           - --release
-          - v5.15.0
+          - v5.16.1
       - id: megalinter-all
-        args: [--flavor, python, --release, v5.15.0]
+        args: [--flavor, python, --release, v5.16.1]
 
   ## Python
   - repo: https://github.com/pre-commit/mirrors-autopep8
