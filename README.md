@@ -37,6 +37,7 @@ Send Informative, Concise Slack Notifications With Minimal Effort
     - [Optional](#optional)
   - [Relation to slack-send](#relation-to-slack-send)
   - [Bug Reports](#bug-reports)
+  - [Permissions](#permissions)
   - [Changelog](#changelog)
 
 <!--TOC-->
@@ -294,6 +295,13 @@ If you are not receiving notifications, please review
 containing the GitHub Action's logs if that doesn't resolve your issue. If you
 are receiving nondescript Slack notifications, please file a bug report with the
 notification you received taking care to preserve the links.
+
+## Permissions
+
+The `pull-requests:read`
+[permission](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)
+is required in private repositories to determine the pull request associated
+with a push event since the push event itself doesn't contain this information.
 
 ## Changelog
 
