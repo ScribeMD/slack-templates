@@ -298,9 +298,9 @@ notification you received taking care to preserve the links.
 
 ## Permissions
 
-The `pull-requests:read`
-[permission](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)
-is required in private repositories to determine the pull request associated
+The `contents:read` and `pull-requests:read`
+[permissions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)
+are required in private repositories to determine the pull request associated
 with a push event since the push event itself doesn't contain this information.
 
 ## Changelog
