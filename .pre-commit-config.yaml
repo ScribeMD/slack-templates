@@ -118,7 +118,7 @@ repos:
 
   ## Git
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v2.32.2 # Keep in sync with pyproject.toml.
+    rev: v2.32.5 # Keep in sync with pyproject.toml.
     hooks:
       - id: commitizen
       - id: commitizen-branch
