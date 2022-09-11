@@ -16,7 +16,7 @@ JSON_PRETTIER_FILE_EXTENSIONS:
 MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .markdownlint.yaml
 PYTHON_FLAKE8_PRE_COMMANDS:
   # Keep in sync with pyproject.toml.
-  - command: pip install flake8-bugbear==22.8.23 mccabe==0.6.1
+  - command: pip install flake8-bugbear==22.9.11 mccabe==0.6.1
 PYTHON_ISORT_CONFIG_FILE: LINTER_DEFAULT
 PYTHON_MYPY_CONFIG_FILE: LINTER_DEFAULT
 PYTHON_PYLINT_CONFIG_FILE: LINTER_DEFAULT
