@@ -1,4 +1,5 @@
 deps
 Laven
 requestee
+setuptools
 slackapi
