@@ -1,4 +1,3 @@
-deps
 Laven
 requestee
 setuptools
