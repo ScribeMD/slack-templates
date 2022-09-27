@@ -17,7 +17,7 @@ repos:
 
   ## Python, Polyglot, Git, pre-commit
   - repo: https://github.com/ScribeMD/pre-commit-hooks
-    rev: 0.8.0
+    rev: 0.13.0
     hooks:
       - id: no-merge-commits
       - id: asdf-install
@@ -25,16 +25,16 @@ repos:
       - id: poetry-lock
       - id: poetry-install
       - id: pre-commit-install
-      - id: megalinter
+      - id: megalinter-incremental
         args:
           - --env
           - "'DISABLE_LINTERS=COPYPASTE_JSCPD,GRAPHQL_GRAPHQL_SCHEMA_LINTER'"
           - --flavor
           - python
           - --release
-          - v5.16.1
-      - id: megalinter-all
-        args: [--flavor, python, --release, v5.16.1]
+          - v6.10.0
+      - id: megalinter-full
+        args: [--flavor, python, --release, v6.10.0]
 
   ## Python
   - repo: https://github.com/pre-commit/mirrors-autopep8
