@@ -15,8 +15,7 @@ JsonValue = None | bool | int | float | str | Sequence[Any] | Mapping[str, Any]
 JsonObject = Mapping[str, JsonValue]
 
 
-# Work around https://github.com/python/mypy/issues/5374.
-@dataclass  # type: ignore[misc]
+@dataclass
 class SlackNotification(ABC):
     """Offer utilities for issuing Slack notifications from GitHub Actions.
 
