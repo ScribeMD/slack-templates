@@ -161,10 +161,10 @@ jobs:
   id: network
   run: |
     ...
-    echo "::set-output name=outage::$OUTAGE"
+    echo "OUTAGE=$OUTAGE" >>"$GITHUB_OUTPUT"
   shell: bash
 - name: Send Slack notification with custom result.
-  if: always() && steps.network.outputs.outage == 'true'
+  if: always() && steps.network.outputs.OUTAGE == 'true'
   uses: ScribeMD/slack-templates@0.6.11
   with:
     bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
