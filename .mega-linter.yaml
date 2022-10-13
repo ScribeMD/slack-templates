@@ -2,7 +2,7 @@ APPLY_FIXES: all
 DEFAULT_BRANCH: main
 # We use the .graphql extension for queries, not schemas, for the sake of syntax
 # highlighting.
-DISABLE_LINTERS: # Overridden by .pre-commit-config.yaml on git commit.
+DISABLE_LINTERS:
   - GRAPHQL_GRAPHQL_SCHEMA_LINTER
 FAIL_IF_MISSING_LINTER_IN_FLAVOR: true
 FORMATTERS_DISABLE_ERRORS: false
