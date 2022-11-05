@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool]
   [tool.black]
-  target-version = ["py310"]
+  target-version = ["py311"]
 
   [tool.commitizen]
   version = "0.6.12"
