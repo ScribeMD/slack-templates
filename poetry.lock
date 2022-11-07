@@ -601,7 +601,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.11.0"
+  python-versions = "^3.11.0"
 content-hash = "5943063ce27656e6d773ff99ad89fda2ac9f8525eeb8aff026668326f0a485a2"
 
 [metadata.files]
