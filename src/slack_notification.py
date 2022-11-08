@@ -202,7 +202,7 @@ class SlackNotification(ABC):
         try:
             # This is only unsafe when $GITHUB_GRAPHQL_URL is not trusted.
             with urlopen(request) as response:  # nosec
-                response_body = load(response)
+                response_body: JsonObject = load(response)
         except URLError as url_error:
             print(url_error, file=stderr)
             return None
