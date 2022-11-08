@@ -12,6 +12,7 @@ build-backend = "poetry.core.masonry.api"
     "pyproject.toml:version",
     "README.md:slack-templates@"
   ]
+  major_version_zero = true
 
   [tool.isort]
   profile = "black"
