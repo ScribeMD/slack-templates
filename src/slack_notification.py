@@ -7,11 +7,13 @@ from os import environ
 from os.path import dirname, join
 from re import fullmatch
 from sys import stderr
-from typing import Any, Optional, cast
+from typing import Optional, cast
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
-JsonValue = None | bool | int | float | str | Sequence[Any] | Mapping[str, Any]
+JsonValue = (
+    None | bool | int | float | str | Sequence["JsonValue"] | Mapping[str, "JsonValue"]
+)
 JsonObject = Mapping[str, JsonValue]
 
 
