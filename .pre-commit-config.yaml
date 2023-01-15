@@ -94,7 +94,7 @@ repos:
 
   ## Python
   - repo: https://github.com/PyCQA/pydocstyle
-    rev: 6.1.1
+    rev: 6.2.3
     hooks:
       - id: pydocstyle
         additional_dependencies:
