@@ -39,7 +39,7 @@ build-backend = "poetry.core.masonry.api"
   python = "==3.11.1"
 
   [tool.poetry.dev-dependencies]
-  autopep8 = "==2.0.0"
+  autopep8 = "==2.0.1"
   bandit = "==1.7.4"
   black = "==22.10.0"
   commitizen = "==2.39.1" # Keep in sync with .pre-commit-config.yaml.
