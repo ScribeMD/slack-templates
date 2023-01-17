@@ -164,7 +164,7 @@ class SlackNotification(ABC):
         pattern = r"([^/]+)/([^/]+)"
         if not (match := fullmatch(pattern, self._repository)):
             raise ValueError(
-                f'Expected $GITHUB_REPOSITORY to match "{pattern}"; got: '
+                f"Expected $GITHUB_REPOSITORY to match {pattern!r}; got: "
                 f"{self._repository}"
             )
 
