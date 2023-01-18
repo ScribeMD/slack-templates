@@ -47,7 +47,7 @@ runs:
       shell: bash
       working-directory: "${{ github.action_path }}"
     - name: Set up Python based on asdf Python version.
-      uses: actions/setup-python@v4.3.0
+      uses: actions/setup-python@v4.5.0
       with:
         python-version: "${{ steps.python.outputs.VERSION }}"
     - name: Configure Slack notification.
