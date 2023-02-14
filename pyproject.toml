@@ -51,7 +51,7 @@ build-backend = "poetry.core.masonry.api"
   pre-commit = "==3.0.4"
   pycodestyle = "==2.10.0"
   pydocstyle = "==6.3.0"
-  pylint = "==2.16.0"
+  pylint = "==2.16.2"
 
   [tool.pylint.messages_control]
   disable = "bad-whitespace, bad-continuation"
