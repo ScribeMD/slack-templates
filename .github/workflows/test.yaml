@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Run pre-commit hooks.
-        uses: ScribeMD/pre-commit-action@0.9.41
+        uses: ScribeMD/pre-commit-action@0.9.42
       - name: Send Slack notification with job status.
         if: always()
         uses: ./
