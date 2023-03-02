@@ -41,7 +41,7 @@ build-backend = "poetry.core.masonry.api"
   autopep8 = "==2.0.1"
   bandit = "==1.7.4"
   black = "==23.1.0"
-  commitizen = "==2.42.0" # Keep in sync with .pre-commit-config.yaml.
+  commitizen = "==2.42.1" # Keep in sync with .pre-commit-config.yaml.
   flake8 = "==6.0.0"
   flake8-bugbear = "==23.2.13" # Keep in sync with .mega-linter.yaml.
   isort = "==5.12.0"
