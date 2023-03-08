@@ -1,4 +1,7 @@
 {
+  "[diff]": {
+    "files.trimTrailingWhitespace": false
+  },
   "autopep8.importStrategy": "fromEnvironment",
   "black-formatter.importStrategy": "fromEnvironment",
   "editor.tabSize": 2,
