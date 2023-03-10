@@ -18,12 +18,12 @@ on:
           in Slack, and select "Copy link" to copy a URL containing the channel
           ID.
         required: true
+permissions:
+  contents: read # for actions/checkout in private repositories
 jobs:
   notify-reviewers:
     name: Notify Reviewers
     runs-on: ubuntu-22.04
-    permissions:
-      contents: read # for actions/checkout in private repositories
     steps:
       - name: Check out slack-templates.
         uses: actions/checkout@v3.3.0
