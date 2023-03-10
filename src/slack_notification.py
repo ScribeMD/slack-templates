@@ -7,7 +7,7 @@ from os import environ
 from os.path import dirname, join
 from re import fullmatch
 from sys import stderr
-from typing import Optional, cast
+from typing import Optional
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
@@ -213,7 +213,7 @@ class SlackNotification(ABC):
             case dict():
                 if graphql_errors := response_body.get("errors"):
                     raise ValueError(graphql_errors)
-                return cast(JsonObject, response_body)
+                return response_body
             case _:
                 raise TypeError(f"Expected JSON response; got:\n{response_body}")
 
