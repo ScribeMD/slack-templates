@@ -2,6 +2,9 @@
   "[diff]": {
     "files.trimTrailingWhitespace": false
   },
+  "[python]": {
+    "editor.tabSize": 4
+  },
   "autopep8.importStrategy": "fromEnvironment",
   "black-formatter.importStrategy": "fromEnvironment",
   "editor.tabSize": 2,
