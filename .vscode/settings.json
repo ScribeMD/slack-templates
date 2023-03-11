@@ -25,8 +25,5 @@
   "python.linting.mypyEnabled": true,
   "python.linting.pycodestyleEnabled": true,
   "python.linting.pydocstyleEnabled": true,
-  "python.terminal.activateEnvInCurrentTerminal": true,
-  "search.exclude": {
-    "poetry.lock": true
-  }
+  "python.terminal.activateEnvInCurrentTerminal": true
 }
