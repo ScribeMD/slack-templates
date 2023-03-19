@@ -47,7 +47,7 @@ build-backend = "poetry.core.masonry.api"
   isort = "==5.12.0"
   mccabe = "==0.7.0" # Keep in sync with .mega-linter.yaml.
   mypy = "==1.1.1"
-  pre-commit = "==3.1.1"
+  pre-commit = "==3.2.0"
   pycodestyle = "==2.10.0"
   pydocstyle = "==6.3.0"
   pylint = "==2.17.0"
