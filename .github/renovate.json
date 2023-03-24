@@ -4,6 +4,9 @@
   "packageRules": [
     {
       "matchDepNames": ["python"],
+      "semanticCommitType": "fix"
+    },
+    {
       "matchFiles": [
         ".github/workflows/notify-assignee.yaml",
         ".github/workflows/notify-reviewers.yaml"
