@@ -12,6 +12,10 @@
         ".github/workflows/notify-reviewers.yaml"
       ],
       "semanticCommitType": "fix"
+    },
+    {
+      "matchPackageNames": ["actions/checkout"],
+      "semanticCommitType": "fix"
     }
   ]
 }
