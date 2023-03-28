@@ -3,6 +3,7 @@
     "davidanson.vscode-markdownlint",
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
+    "github.vscode-github-actions",
     "graphql.vscode-graphql",
     "ms-azuretools.vscode-docker",
     "ms-python.autopep8",
