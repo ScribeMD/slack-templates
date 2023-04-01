@@ -3,6 +3,9 @@ requires = ["poetry-core>=1.5.2"]
 build-backend = "poetry.core.masonry.api"
 
 [tool]
+  [tool.autopep8]
+  max_line_length = 88
+
   [tool.black]
   target-version = ["py311"]
 
@@ -42,16 +45,59 @@ build-backend = "poetry.core.masonry.api"
   bandit = "==1.7.5"
   black = "==23.3.0"
   commitizen = "==2.42.1" # Keep in sync with .pre-commit-config.yaml.
-  flake8 = "==6.0.0"
-  flake8-bugbear = "==23.3.23" # Keep in sync with .mega-linter.yaml.
-  isort = "==5.12.0"
-  mccabe = "==0.7.0" # Keep in sync with .mega-linter.yaml.
   mypy = "==1.1.1"
   pre-commit = "==3.2.2"
   pycodestyle = "==2.10.0"
-  pydocstyle = "==6.3.0"
   pylint = "==2.17.2"
 
   [tool.pylint.messages_control]
   disable = "bad-whitespace, bad-continuation"
   max-line-length = 88
+
+  [tool.ruff]
+  select = [
+    "A",
+    "ANN",
+    "ARG",
+    "B",
+    "BLE",
+    "C4",
+    "C90",
+    "D",
+    "DTZ",
+    "E",
+    "EM",
+    "ERA",
+    "EXE",
+    "F",
+    "FBT",
+    "G",
+    "I",
+    "ICN",
+    "INP",
+    "INT",
+    "ISC",
+    "N",
+    "PGH",
+    "PIE",
+    "PL",
+    "PTH",
+    "PYI",
+    "RET",
+    "RSE",
+    "RUF",
+    "SIM",
+    "SLF",
+    "T10",
+    "TCH",
+    "TID",
+    "TRY",
+    "UP",
+    "W",
+    "YTT"
+  ]
+  ignore = ["ANN101", "D203", "D213"]
+  target-version = "py311"
+
+  [tool.ruff.flake8-annotations]
+  mypy-init-return = true

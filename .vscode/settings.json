@@ -12,10 +12,7 @@
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "flake8.importStrategy": "fromEnvironment",
   "git.branchProtection": ["main"],
-  "isort.check": true,
-  "isort.importStrategy": "fromEnvironment",
   "pylint.importStrategy": "fromEnvironment",
   "python.analysis.typeCheckingMode": "strict",
   "python.defaultInterpreterPath": "./.venv/bin/python",
@@ -24,6 +21,5 @@
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
   "python.linting.pycodestyleEnabled": true,
-  "python.linting.pydocstyleEnabled": true,
   "python.terminal.activateEnvInCurrentTerminal": true
 }
