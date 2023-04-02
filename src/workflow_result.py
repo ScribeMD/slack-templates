@@ -1,7 +1,6 @@
 """Offer WorkflowResult class."""
 from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional
 
 from .slack_notification import SlackNotification
 
@@ -20,7 +19,7 @@ class WorkflowResult(SlackNotification):
     _job_results: Sequence[str]
 
     def __init__(
-        self, token: str, job_results: Sequence[str], pr_number: Optional[int] = None
+        self, token: str, job_results: Sequence[str], pr_number: int | None = None
     ):
         """Construct a SlackNotification for the result of a CI workflow.
 

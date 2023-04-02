@@ -7,7 +7,6 @@ from os import environ
 from pathlib import Path
 from re import fullmatch
 from sys import stderr
-from typing import Optional
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
@@ -37,14 +36,14 @@ class SlackNotification(ABC):
     """Contains a GraphQL query that gets the pull request associated with a commit."""
 
     _headers: MutableMapping[str, str]
-    _pr_number: Optional[int]
+    _pr_number: int | None
     _actor = environ["GITHUB_ACTOR"]
     _repository = environ["GITHUB_REPOSITORY"]
     _repository_url = f"{environ['GITHUB_SERVER_URL']}/{_repository}"
     _event_name = environ["GITHUB_EVENT_NAME"]
     _sha = environ["GITHUB_SHA"]
 
-    def __init__(self, token: str, pr_number: Optional[int] = None):
+    def __init__(self, token: str, pr_number: int | None = None):
         """Store the given token and some GitHub environment variables.
 
         token: the token to use to authenticate to the GitHub API. Obtain from
@@ -84,7 +83,7 @@ class SlackNotification(ABC):
         workflow_name = environ["GITHUB_WORKFLOW"]
         return f"<{workflow_url}|{workflow_name} workflow>"
 
-    def get_event_info(self, author: Optional[str] = None) -> str:
+    def get_event_info(self, author: str | None = None) -> str:
         """Return detailed Slack notification copy for the current event.
 
         Include Slack links to the associated branch and repository as well as one
@@ -152,7 +151,7 @@ class SlackNotification(ABC):
         event_url = f"{self._repository_url}/pull/{pr_number}"
         return f"merge of <{event_url}|#{pr_number}> to"
 
-    def _get_associated_pr_number(self) -> Optional[int]:
+    def _get_associated_pr_number(self) -> int | None:
         """Return the number of the merged pull request for the pushed commit.
 
         This is the pull request that introduced the pushed commit to the branch. Return
@@ -189,7 +188,7 @@ class SlackNotification(ABC):
         )
         return self._pr_number
 
-    def _graphql_request(self, body: JsonObject) -> Optional[JsonObject]:
+    def _graphql_request(self, body: JsonObject) -> JsonObject | None:
         """Return the parsed JSON response for a GitHub GraphQL request.
 
         Return None if the request fails. Raise a ValueError if the response contains
@@ -217,7 +216,7 @@ class SlackNotification(ABC):
             case _:
                 raise TypeError(f"Expected JSON response; got:\n{response_body}")
 
-    def _validate_pr_num(self, response: JsonObject) -> Optional[int]:
+    def _validate_pr_num(self, response: JsonObject) -> int | None:
         """Return the pull request number contained in the given response.
 
         Return None if it couldn't be determined.
