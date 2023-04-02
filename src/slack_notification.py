@@ -4,7 +4,7 @@ from collections.abc import Mapping, MutableMapping, Sequence
 from dataclasses import dataclass
 from json import dumps, load
 from os import environ
-from os.path import dirname, join
+from pathlib import Path
 from re import fullmatch
 from sys import stderr
 from typing import Optional
@@ -31,8 +31,8 @@ class SlackNotification(ABC):
     get_event_info(author=None): Return Slack copy for the triggering event.
     """
 
-    _GRAPHQL_QUERY_PATH = join(
-        dirname(__file__), "pull_request_for_base_branch_oid.graphql"
+    _GRAPHQL_QUERY_PATH = Path(__file__).with_name(
+        "pull_request_for_base_branch_oid.graphql"
     )
     """Contains a GraphQL query that gets the pull request associated with a commit."""
 
@@ -65,8 +65,8 @@ class SlackNotification(ABC):
         to set SLACK_MESSAGE to the appropriate shell config file. The message is
         obtained from self.get_message(), which must be overridden.
         """
-        github_env = environ["GITHUB_ENV"]
-        with open(github_env, "a", encoding="utf-8") as env_file:
+        github_env = Path(environ["GITHUB_ENV"])
+        with github_env.open("a", encoding="utf-8") as env_file:
             env_file.write(f"SLACK_MESSAGE={self.get_message()}\n")
 
     @abstractmethod
@@ -170,7 +170,7 @@ class SlackNotification(ABC):
                 f"{self._repository}"
             )
 
-        with open(self._GRAPHQL_QUERY_PATH, encoding="utf-8") as input_stream:
+        with self._GRAPHQL_QUERY_PATH.open(encoding="utf-8") as input_stream:
             query_string = input_stream.read()
 
         query: JsonObject = {
