@@ -164,10 +164,11 @@ class SlackNotification(ABC):
 
         pattern = r"([^/]+)/([^/]+)"
         if not (match := fullmatch(pattern, self._repository)):
-            raise ValueError(
+            message = (
                 f"Expected $GITHUB_REPOSITORY to match {pattern!r}; got: "
                 f"{self._repository}"
             )
+            raise ValueError(message)
 
         with self._GRAPHQL_QUERY_PATH.open(encoding="utf-8") as input_stream:
             query_string = input_stream.read()
@@ -214,7 +215,8 @@ class SlackNotification(ABC):
                     raise ValueError(graphql_errors)
                 return response_body
             case _:
-                raise TypeError(f"Expected JSON response; got:\n{response_body}")
+                message = f"Expected JSON response; got:\n{response_body}"
+                raise TypeError(message)
 
     def _validate_pr_num(self, response: JsonObject) -> int | None:
         """Return the pull request number contained in the given response.
