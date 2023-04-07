@@ -4,7 +4,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool]
   [tool.autopep8]
+  aggressive = 2
+  in-place = true
   max_line_length = 88
+  recursive = true
 
   [tool.black]
   target-version = ["py311"]
