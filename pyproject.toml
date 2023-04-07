@@ -20,9 +20,6 @@ build-backend = "poetry.core.masonry.api"
   ]
   major_version_zero = true
 
-  [tool.isort]
-  profile = "black"
-
   [tool.mypy]
   disallow_any_decorated = true
   disallow_any_unimported = true
