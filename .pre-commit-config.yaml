@@ -39,7 +39,8 @@ repos:
     rev: v1.5.1
     hooks:
       - id: docformatter
-        args: [--wrap-summaries, "88", --wrap-descriptions, "88"]
+        additional_dependencies:
+          - tomli==2.0.1
 
   ## Markdown
   - repo: https://github.com/frnmst/md-toc
