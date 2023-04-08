@@ -20,6 +20,12 @@ build-backend = "poetry.core.masonry.api"
   ]
   major_version_zero = true
 
+  [tool.docformatter]
+  in-place = true
+  recursive = true
+  wrap-descriptions = 88
+  wrap-summaries = 88
+
   [tool.mypy]
   disallow_any_decorated = true
   disallow_any_unimported = true
