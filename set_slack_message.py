@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """Set Slack message for GitHub Action.
 
 Usage: python set_slack_message.py \
