@@ -13,11 +13,8 @@ build-backend = "poetry.core.masonry.api"
   target-version = ["py311"]
 
   [tool.commitizen]
-  version = "0.6.20"
-  version_files = [
-    "pyproject.toml:version",
-    "README.md:slack-templates@"
-  ]
+  version_provider = "poetry"
+  version_files = ["README.md:slack-templates@"]
   major_version_zero = true
 
   [tool.docformatter]
