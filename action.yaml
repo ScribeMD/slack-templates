@@ -65,7 +65,7 @@ runs:
       working-directory: "${{ github.action_path }}"
     - name: Send Slack notification.
       if: inputs.bot-token != '' && inputs.channel-id != ''
-      uses: slackapi/slack-github-action@v1.23.0
+      uses: slackapi/slack-github-action@v1.24.0
       with:
         channel-id: ${{ inputs.channel-id }}
         slack-message: ${{ env.SLACK_MESSAGE }}
