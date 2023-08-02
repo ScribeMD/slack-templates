@@ -99,7 +99,7 @@ because merges will be indistinguishable from direct pushes.
   ```yaml
   - name: Send Slack notification with job status.
     if: always()
-    uses: ScribeMD/slack-templates@0.6.23
+    uses: ScribeMD/slack-templates@0.6.24
     with:
       bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
       channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
@@ -142,7 +142,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Slack notification with workflow result.
-        uses: ScribeMD/slack-templates@0.6.23
+        uses: ScribeMD/slack-templates@0.6.24
         with:
           bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
@@ -165,7 +165,7 @@ jobs:
   shell: bash
 - name: Send Slack notification with custom result.
   if: always() && steps.network.outputs.OUTAGE == 'true'
-  uses: ScribeMD/slack-templates@0.6.23
+  uses: ScribeMD/slack-templates@0.6.24
   with:
     bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
     channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
@@ -186,7 +186,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Slack notification requesting code review.
-        uses: ScribeMD/slack-templates@0.6.23
+        uses: ScribeMD/slack-templates@0.6.24
         with:
           bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
@@ -206,7 +206,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Slack notification assigning pull request.
-        uses: ScribeMD/slack-templates@0.6.23
+        uses: ScribeMD/slack-templates@0.6.24
         with:
           bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
@@ -218,7 +218,7 @@ jobs:
 ```yaml
 - name: Send custom Slack notification.
   if: always()
-  uses: ScribeMD/slack-templates@0.6.23
+  uses: ScribeMD/slack-templates@0.6.24
   with:
     bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
     channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
