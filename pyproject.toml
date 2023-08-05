@@ -33,7 +33,7 @@ build-backend = "poetry.core.masonry.api"
 
   [tool.poetry]
   name = "slack-templates"
-  version = "0.6.25"
+  version = "0.6.26"
   description = "Send Informative, Concise Slack Notifications With Minimal Effort"
   authors = ["Kurt von Laven <kurt.von.laven@gmail.com>"]
   license = "MIT"
