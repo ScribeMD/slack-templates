@@ -39,17 +39,10 @@ branding:
 runs:
   using: composite
   steps:
-    - id: python
-      name: Read asdf Python version from .tool-versions.
-      run: |
-        python_version="$(grep --perl-regexp --only-matching '(?<=python )(\d+\.){2}\d+' .tool-versions)"
-        echo "VERSION=$python_version" >>"$GITHUB_OUTPUT"
-      shell: bash
-      working-directory: "${{ github.action_path }}"
     - name: Set up Python based on asdf Python version.
       uses: actions/setup-python@v4.7.0
       with:
-        python-version: "${{ steps.python.outputs.VERSION }}"
+        python-version-file: pyproject.toml
     - name: Configure Slack notification.
       run: >
         python set_slack_message.py
