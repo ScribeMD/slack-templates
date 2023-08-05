@@ -39,10 +39,10 @@ branding:
 runs:
   using: composite
   steps:
-    - name: Set up Python based on asdf Python version.
+    - name: Set up Python based on Python version in pyproject.toml.
       uses: actions/setup-python@v4.7.0
       with:
-        python-version-file: pyproject.toml
+        python-version-file: "${{ github.action_path }}/pyproject.toml"
     - name: Configure Slack notification.
       run: >
         python set_slack_message.py
