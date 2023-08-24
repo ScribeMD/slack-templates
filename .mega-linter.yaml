@@ -4,8 +4,8 @@ DEFAULT_BRANCH: main
 DISABLE_LINTERS:
   - GRAPHQL_GRAPHQL_SCHEMA_LINTER # We have .graphql queries, not schemas.
   - MARKDOWN_MARKDOWN_LINK_CHECK # Superseded by Lychee
-  - PYTHON_FLAKE8
-  - PYTHON_ISORT
+  - PYTHON_FLAKE8 # Superseded by Ruff
+  - PYTHON_ISORT # Superseded by Ruff
 FAIL_IF_MISSING_LINTER_IN_FLAVOR: true
 FORMATTERS_DISABLE_ERRORS: false
 PRINT_ALPACA: false
