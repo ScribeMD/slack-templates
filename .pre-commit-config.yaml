@@ -39,8 +39,6 @@ repos:
     rev: v1.7.5
     hooks:
       - id: docformatter
-        additional_dependencies:
-          - tomli==2.0.1
 
   ## Markdown
   - repo: https://github.com/frnmst/md-toc
