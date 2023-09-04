@@ -1,0 +1,23 @@
+name: Request Review
+on:
+  push:
+    branches:
+      - request-review
+permissions: write-all
+jobs:
+  request-review:
+    name: Request Review
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "Request review of #426 from Dependency Management team."
+        run: >
+          curl
+          --fail-with-body
+          --silent
+          --show-error
+          --request POST
+          --header "Accept: application/vnd.github+json"
+          --header "Authorization: Bearer ${{ github.token }}"
+          --header "X-GitHub-Api-Version: 2022-11-28"
+          "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls/426/requested_reviewers"
+          --data '{"team_reviewers":["dependency-management"]}'
