@@ -25,8 +25,8 @@ build-backend = "poetry.core.masonry.api"
   [tool.mypy]
   disallow_any_decorated = true
   disallow_any_unimported = true
-  show_column_numbers = true
   show_error_context = true
+  show_error_end = true
   strict = true
   pretty = true
   warn_unreachable = true
