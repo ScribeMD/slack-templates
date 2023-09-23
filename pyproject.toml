@@ -59,54 +59,23 @@ build-backend = "poetry.core.masonry.api"
   max-line-length = 88
 
   [tool.ruff]
-  select = [
-    "A",
-    "ANN",
-    "ARG",
-    "ASYNC",
-    "B",
-    "BLE",
-    "C4",
-    "C90",
-    "D",
-    "DTZ",
-    "E",
-    "EM",
-    "ERA",
-    "EXE",
-    "F",
-    "FBT",
-    "FIX",
-    "FLY",
-    "G",
-    "I",
-    "ICN",
-    "INP",
-    "INT",
-    "ISC",
-    "N",
-    "PERF",
-    "PGH",
-    "PIE",
-    "PL",
-    "PTH",
-    "PYI",
-    "RET",
-    "RSE",
-    "RUF",
-    "SIM",
-    "SLF",
-    "SLOT",
-    "T10",
-    "TCH",
-    "TD",
-    "TID",
-    "TRY",
-    "UP",
-    "W",
-    "YTT"
+  select = ["ALL"]
+  ignore = [
+    "AIR",
+    "ANN101",
+    "COM",
+    "CPY001",
+    "D203",
+    "D213",
+    "DJ",
+    "FA",
+    "NPY",
+    "PD",
+    "PT",
+    "Q",
+    "S",
+    "T20"
   ]
-  ignore = ["ANN101", "D203", "D213"]
   target-version = "py311"
 
   [tool.ruff.flake8-annotations]
