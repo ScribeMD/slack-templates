@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v4.1.0
         with:
           fetch-depth: 0
+          filter: blob:none
       - name: Run pre-commit hooks.
         uses: ScribeMD/pre-commit-action@0.9.107
       - name: Send Slack notification with job status.
