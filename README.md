@@ -66,9 +66,9 @@ are all currently supported templates:
     - direct push of branch: \<workflow> **\<result>** for push of \<sha> to
       \<branch> on \<repository> by \<username>.
 - `"reviewers"`:
-  - `requester != requestee`: \<requester> requests review from **\<reviewers>**
+  - `requester != reviewer`: \<requester> requests review from **\<reviewers>**
     of \<PR #> from \<branch> on \<repository>.
-  - `requester == requestee`: \<username> self-requests review of \<PR #> from
+  - `requester == reviewer`: \<username> self-requests review of \<PR #> from
     \<branch> on \<repository>.
 - `"assignee"`:
   - `assignor != assignee`: \<assignor> assigned **\<assignee>** \<PR #> from
