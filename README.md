@@ -57,7 +57,7 @@ Send Informative, Concise Slack Notifications With Minimal Effort
 The `template` parameter controls the structure of the Slack notification. Here
 are all currently supported templates:
 
-- `"result"`:
+- `result`:
   - `pull_request` event: \<workflow> **\<result>** for \<PR #> from
     \<branch> on \<repository> by \<username>.
   - `push` event:
@@ -65,17 +65,17 @@ are all currently supported templates:
       \<branch> on \<repository> by \<username>.
     - direct push of branch: \<workflow> **\<result>** for push of \<sha> to
       \<branch> on \<repository> by \<username>.
-- `"reviewers"`:
+- `reviewers`:
   - `requester != reviewer`: \<requester> requests review from **\<reviewers>**
     of \<PR #> from \<branch> on \<repository>.
   - `requester == reviewer`: \<username> self-requests review of \<PR #> from
     \<branch> on \<repository>.
-- `"assignee"`:
+- `assignee`:
   - `assignor != assignee`: \<assignor> assigned **\<assignee>** \<PR #> from
     \<branch> on \<repository>.
   - `assignor == assignee`: \<username> self-assigned \<PR #> from \<branch>
     on \<repository>.
-- `"custom"`: Pass your custom message via the `message` parameter.
+- `custom`: Pass your custom message via the `message` parameter.
 
 All usernames refer to GitHub usernames. Users with differing Slack and GitHub
 usernames may wish to register their GitHub username for
