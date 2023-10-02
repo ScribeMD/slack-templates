@@ -48,7 +48,7 @@ Send Informative, Concise Slack Notifications With Minimal Effort
 - Install the app to your workspace, and copy the provided OAuth access token.
 - Create a GitHub secret to store the bot token.
 - Invite your bot to the desired channel.
-- Secondary-click on the channel, and select "Copy link."
+- Secondary-click on the channel, and select “Copy link.”
 - Create a GitHub secret to store the final portion of the path. The channel ID
   is neither the name of the channel nor the URL.
 
