@@ -108,7 +108,7 @@ because merges will be indistinguishable from direct pushes.
 
 ### Summarize the results of an entire workflow
 
-- Create a new job at the end of the workflow that depends on (a.k.a., "needs")
+- Create a new job at the end of the workflow that depends on (a.k.a., `needs`)
   all other jobs but always runs.
 - Pass `"${{ join(needs.*.result, ' ') }}"` as the `results`.
 
