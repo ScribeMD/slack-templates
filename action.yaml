@@ -39,7 +39,7 @@ branding:
 runs:
   using: composite
   steps:
-    - name: Set up Python based on Python version in pyproject.toml.
+    - name: Set up Python at the version specified in pyproject.toml.
       uses: actions/setup-python@v4.7.1
       with:
         python-version-file: "${{ github.action_path }}/pyproject.toml"
