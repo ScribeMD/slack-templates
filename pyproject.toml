@@ -10,7 +10,7 @@ build-backend = "poetry.core.masonry.api"
   recursive = true
 
   [tool.black]
-  target-version = ["py311"]
+  target-version = ["py312"]
 
   [tool.commitizen]
   version_provider = "poetry"
@@ -76,7 +76,7 @@ build-backend = "poetry.core.masonry.api"
     "S",
     "T20"
   ]
-  target-version = "py311"
+  target-version = "py312"
 
   [tool.ruff.flake8-annotations]
   mypy-init-return = true
