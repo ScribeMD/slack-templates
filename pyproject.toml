@@ -55,7 +55,6 @@ build-backend = "poetry.core.masonry.api"
   ruff = "==0.1.5"
 
   [tool.pylint.messages_control]
-  disable = "bad-whitespace, bad-continuation"
   max-line-length = 88
 
   [tool.ruff]
