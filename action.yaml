@@ -40,7 +40,7 @@ runs:
   using: composite
   steps:
     - name: Set up Python at the version specified in pyproject.toml.
-      uses: actions/setup-python@v4.7.1
+      uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4.7.1
       with:
         python-version-file: "${{ github.action_path }}/pyproject.toml"
     - name: Configure Slack notification.
@@ -58,7 +58,7 @@ runs:
       working-directory: "${{ github.action_path }}"
     - name: Send Slack notification.
       if: inputs.bot-token != '' && inputs.channel-id != ''
-      uses: slackapi/slack-github-action@v1.24.0
+      uses: slackapi/slack-github-action@e28cf165c92ffef168d23c5c9000cffc8a25e117 # v1.24.0
       with:
         channel-id: ${{ inputs.channel-id }}
         slack-message: ${{ env.SLACK_MESSAGE }}
