@@ -45,14 +45,14 @@ build-backend = "poetry.core.masonry.api"
 
   [tool.poetry.group.dev.dependencies]
   autopep8 = "==2.0.4"
-  bandit = "==1.7.5"
-  black = "==23.11.0"
+  bandit = "==1.7.6"
+  black = "==23.12.0"
   commitizen = "==3.13.0" # Keep in sync with .pre-commit-config.yaml.
-  mypy = "==1.6.1"
+  mypy = "==1.7.1"
   pre-commit = "==3.6.0"
   pycodestyle = "==2.11.1"
-  pylint = "==3.0.2"
-  ruff = "==0.1.5"
+  pylint = "==3.0.3"
+  ruff = "==0.1.8"
 
   [tool.pylint.messages_control]
   max-line-length = 88
