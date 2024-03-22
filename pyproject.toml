@@ -33,6 +33,7 @@ build-backend = "poetry.core.masonry.api"
   warn_unreachable = true
 
   [tool.poetry]
+  package-mode = false
   name = "slack-templates"
   version = "0.6.38"
   description = "Send Informative, Concise Slack Notifications With Minimal Effort"
