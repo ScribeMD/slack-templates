@@ -52,7 +52,7 @@ build-backend = "poetry.core.masonry.api"
   mypy = "==1.7.1"
   pre-commit = "==3.6.2"
   pycodestyle = "==2.11.1"
-  pylint = "==3.0.3"
+  pylint = "==4.0.9"
   ruff = "==0.1.8"
 
   [tool.pylint.messages_control]
